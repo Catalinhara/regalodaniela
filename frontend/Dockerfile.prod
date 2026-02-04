@@ -12,5 +12,7 @@ COPY . .
 # Expose port
 EXPOSE 5173
 
-# Start dev server
-CMD ["npm", "run", "dev", "--", "--host"]
+# Build and serve
+RUN npm run build
+RUN npm install -g serve
+CMD ["serve", "-s", "dist", "-l", "5173"]
