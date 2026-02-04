@@ -1,0 +1,1068 @@
+/* ==========================================
+   CLARAMENTE - PREMIUM DESIGN SYSTEM (REFINED)
+   Target: Therapy Professionals (20-50, Female)
+   Aesthetic: Calming, Professional, Soft, High-End
+   ========================================== */
+
+:root {
+    --primary: #1B5E20;
+    /* Deep Green Contrast */
+    --primary-light: #E8F5E9;
+    /* Soft Pastel Green */
+    --secondary: #388E3C;
+    --secondary-light: #F1F8E9;
+    --accent: #E8D5C4;
+    --accent-soft: #FAF3EF;
+    --success: #96CEB4;
+    --error: #E57373;
+    --bg-app: #FDFDFD;
+    --bg-glass: rgba(255, 255, 255, 0.85);
+    --bg-card: #FFFFFF;
+    --text-main: #2C3E50;
+    --text-soft: #607D8B;
+    --text-muted: #90A4AE;
+    --blur-glass: blur(16px);
+    --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.04);
+    --shadow-md: 0 12px 32px rgba(142, 184, 161, 0.12);
+    --shadow-lg: 0 20px 48px rgba(0, 0, 0, 0.08);
+    --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+    --transition: all 0.4s var(--ease-out);
+}
+
+/* Base Container */
+.patients-container {
+    min-height: 100vh;
+    width: 100%;
+    background-color: var(--bg-app);
+    background-image:
+        radial-gradient(at 0% 0%, var(--primary-light) 0, transparent 50%),
+        radial-gradient(at 100% 100%, var(--secondary-light) 0, transparent 50%);
+    padding-bottom: env(safe-area-inset-bottom, 20px);
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+    position: relative;
+    /* For background blobs */
+    font-family: 'Instrument Sans', 'Inter', -apple-system, sans-serif;
+    box-sizing: border-box;
+    margin: 0;
+}
+
+/* ==========================================
+   ATMOSPHERIC BACKGROUND BLOBS
+   ========================================== */
+.bg-blob {
+    position: fixed;
+    border-radius: 50%;
+    filter: blur(80px);
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0.12;
+    /* Softer opacity */
+    animation: drift 20s ease-in-out infinite;
+}
+
+.blob-1 {
+    width: 400px;
+    height: 400px;
+    background: var(--primary);
+    top: -100px;
+    left: -100px;
+    animation-duration: 25s;
+}
+
+.blob-2 {
+    width: 350px;
+    height: 350px;
+    background: var(--secondary);
+    bottom: 10%;
+    right: -50px;
+    animation-duration: 30s;
+    animation-delay: -5s;
+}
+
+.blob-3 {
+    width: 300px;
+    height: 300px;
+    background: var(--accent);
+    top: 40%;
+    left: 20%;
+    animation-duration: 35s;
+    animation-delay: -10s;
+}
+
+@keyframes drift {
+
+    0%,
+    100% {
+        transform: translate(0, 0) scale(1);
+    }
+
+    33% {
+        transform: translate(30px, 50px) scale(1.1);
+    }
+
+    66% {
+        transform: translate(-20px, 20px) scale(0.9);
+    }
+}
+
+/* ==========================================
+   GLASS HEADER (NATIVE APP FEEL)
+   ========================================== */
+.patients-header {
+    position: sticky;
+    top: 15px;
+    z-index: 1000;
+    background: rgba(232, 245, 233, 0.65);
+    /* Glassy Green Tint */
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    height: clamp(55px, 9vh, 65px);
+    display: grid;
+    grid-template-columns: 50px 1fr 50px;
+    align-items: center;
+    padding: 0 15px;
+    border: 1px solid rgba(129, 199, 132, 0.25);
+    /* More visible green border */
+    box-shadow: 0 8px 32px rgba(27, 94, 32, 0.08);
+    width: 95%;
+    max-width: 800px;
+    margin: 0 auto 20px auto;
+    border-radius: 40px;
+}
+
+.patients-header .btn-back-clean {
+    width: 36px;
+    height: 36px;
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(129, 199, 132, 0.1);
+    border-radius: 50%;
+    font-size: 1.2rem;
+    color: #1B5E20;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.patients-header .header-title-container {
+    flex: 1;
+    text-align: center;
+    background: #EEF7F1;
+    /* Super clean light green */
+    padding: 6px 14px;
+    /* Shrunken padding */
+    border-radius: 20px;
+    border: 1.5px solid rgba(129, 199, 132, 0.2);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+    /* Softer shadow */
+    margin: 0 8px;
+}
+
+.patients-header .header-title-container h1 {
+    font-size: 0.85rem;
+    font-weight: 750;
+    letter-spacing: 0.8px;
+    color: #1B5E20;
+    margin: 0;
+    text-transform: uppercase;
+}
+
+.patients-header .header-title-container span {
+    font-size: 0.52rem;
+    color: #388E3C;
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    display: block;
+    margin-top: -1px;
+}
+
+.patients-header .btn-add-action {
+    width: 36px;
+    height: 36px;
+    background: #1B5E20;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    box-shadow: 0 4px 10px rgba(27, 94, 32, 0.2);
+    cursor: pointer;
+    transition: var(--transition);
+    justify-self: end;
+}
+
+/* ==========================================
+   ORGANIC GRID & VIEWPORT
+   ========================================== */
+.patients-viewport {
+    flex: 1;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: clamp(30px, 5vw, 60px) 20px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+}
+
+.patients-grid-v2 {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(clamp(130px, 15vw, 180px), 1fr));
+    gap: clamp(30px, 4vw, 50px);
+    justify-items: center;
+    justify-content: center;
+    /* PERFECT CENTERING */
+    width: 100%;
+    margin: 0 auto;
+    max-width: 1100px;
+    /* Tighter focus */
+}
+
+.patient-card-v2 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 160px;
+    cursor: pointer;
+    opacity: 0;
+    animation: fadeInUp 0.8s var(--ease-out) forwards;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Stagger indices for items 1-12 */
+.patient-card-v2:nth-child(1) {
+    animation-delay: 0.1s;
+}
+
+.patient-card-v2:nth-child(2) {
+    animation-delay: 0.15s;
+}
+
+.patient-card-v2:nth-child(3) {
+    animation-delay: 0.2s;
+}
+
+.patient-card-v2:nth-child(4) {
+    animation-delay: 0.25s;
+}
+
+.patient-card-v2:nth-child(5) {
+    animation-delay: 0.3s;
+}
+
+.patient-card-v2:nth-child(6) {
+    animation-delay: 0.35s;
+}
+
+.patient-card-v2:nth-child(7) {
+    animation-delay: 0.4s;
+}
+
+.patient-card-v2:nth-child(8) {
+    animation-delay: 0.45s;
+}
+
+.avatar-sphere {
+    width: clamp(90px, 20vw, 130px);
+    height: clamp(90px, 20vw, 130px);
+    border-radius: 35% 65% 65% 35% / 35% 35% 65% 65%;
+    /* Organic shape */
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--shadow-md);
+    border: 4px solid white;
+    font-size: clamp(2.2rem, 6vw, 3.5rem);
+    overflow: hidden;
+    transition: var(--transition);
+    position: relative;
+    z-index: 1;
+}
+
+/* Organic Float Keyframes with Morphing */
+@keyframes float1 {
+
+    0%,
+    100% {
+        transform: translateY(0) rotate(0deg);
+        border-radius: 35% 65% 65% 35% / 35% 35% 65% 65%;
+    }
+
+    50% {
+        transform: translateY(-12px) rotate(2deg);
+        border-radius: 45% 55% 45% 55% / 55% 45% 55% 45%;
+    }
+}
+
+@keyframes float2 {
+
+    0%,
+    100% {
+        transform: translateY(0) rotate(0deg);
+        border-radius: 65% 35% 35% 65% / 65% 65% 35% 35%;
+    }
+
+    50% {
+        transform: translateY(-15px) rotate(-2deg);
+        border-radius: 55% 45% 55% 45% / 45% 55% 45% 55%;
+    }
+}
+
+@keyframes float3 {
+
+    0%,
+    100% {
+        transform: translateY(0) rotate(0deg);
+        border-radius: 40% 60% 40% 60% / 60% 40% 60% 40%;
+    }
+
+    50% {
+        transform: translateY(-10px) rotate(1deg);
+        border-radius: 50% 50% 50% 50% / 50% 50% 50% 50%;
+    }
+}
+
+.card-float-1 .avatar-sphere {
+    animation: float1 6s ease-in-out infinite;
+}
+
+.card-float-2 .avatar-sphere {
+    animation: float2 7.5s ease-in-out infinite;
+}
+
+.card-float-3 .avatar-sphere {
+    animation: float3 9s ease-in-out infinite;
+}
+
+/* Emotional Load Auras (Enhanced) */
+.aura-safe {
+    box-shadow: 0 10px 30px rgba(150, 206, 180, 0.25), 0 0 0 2px rgba(150, 206, 180, 0.1);
+    border-color: #E8F5E9;
+}
+
+.aura-stable {
+    box-shadow: 0 10px 30px rgba(142, 184, 161, 0.2), 0 0 0 2px rgba(142, 184, 161, 0.1);
+    border-color: #F1F8E9;
+}
+
+.aura-active {
+    box-shadow: 0 10px 35px rgba(255, 183, 77, 0.25), 0 0 0 2px rgba(255, 183, 77, 0.1);
+    border-color: #FFF3E0;
+    animation: pulseActive 3s ease-in-out infinite;
+}
+
+.aura-critical {
+    box-shadow: 0 10px 40px rgba(229, 115, 115, 0.4), 0 0 0 4px rgba(229, 115, 115, 0.1);
+    border-color: #FFEBEE;
+    animation: pulseCritical 2s ease-in-out infinite;
+}
+
+@keyframes pulseActive {
+
+    0%,
+    100% {
+        box-shadow: 0 10px 35px rgba(255, 183, 77, 0.25), 0 0 0 2px rgba(255, 183, 77, 0.1);
+    }
+
+    50% {
+        box-shadow: 0 15px 45px rgba(255, 183, 77, 0.35), 0 0 0 6px rgba(255, 183, 77, 0.15);
+    }
+}
+
+@keyframes pulseCritical {
+
+    0%,
+    100% {
+        box-shadow: 0 10px 40px rgba(229, 115, 115, 0.4), 0 0 0 4px rgba(229, 115, 115, 0.1);
+    }
+
+    50% {
+        box-shadow: 0 20px 60px rgba(229, 115, 115, 0.6), 0 0 0 10px rgba(229, 115, 115, 0.2);
+    }
+}
+
+/* Trend Badges (Redesigned for stability) */
+.patient-name-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 4px;
+}
+
+.trend-badge {
+    width: 22px;
+    height: 22px;
+    border-radius: 8px;
+    /* Professional squircle */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    font-weight: 800;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    flex-shrink: 0;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.trend-improving {
+    background: rgba(150, 206, 180, 0.15);
+    color: #2E7D46;
+    border: 1px solid rgba(46, 125, 70, 0.2);
+}
+
+.trend-improving:hover {
+    transform: translateY(-2px);
+    background: rgba(150, 206, 180, 0.25);
+    box-shadow: 0 6px 15px rgba(46, 125, 70, 0.1);
+}
+
+.trend-stable {
+    background: rgba(144, 164, 174, 0.1);
+    color: #546E7A;
+    border: 1px solid rgba(84, 110, 122, 0.15);
+}
+
+.trend-declining {
+    background: rgba(229, 115, 115, 0.15);
+    color: #C62828;
+    border: 1px solid rgba(198, 40, 40, 0.2);
+    animation: trendCautionPulse 3s infinite ease-in-out;
+}
+
+@keyframes trendCautionPulse {
+
+    0%,
+    100% {
+        box-shadow: 0 4px 10px rgba(198, 40, 40, 0.05);
+        border-color: rgba(198, 40, 40, 0.2);
+    }
+
+    50% {
+        box-shadow: 0 4px 15px rgba(198, 40, 40, 0.2);
+        border-color: rgba(198, 40, 40, 0.4);
+    }
+}
+
+.patient-info-v2 {
+    margin-top: 12px;
+    text-align: center;
+    width: 100%;
+}
+
+.patient-info-v2 h3 {
+    margin: 0;
+    font-size: clamp(0.85rem, 3.5vw, 1rem);
+    font-weight: 600;
+    color: var(--text-main);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.patient-info-v2 p {
+    margin: 2px 0 0 0;
+    font-size: 0.7rem;
+    color: var(--text-muted);
+}
+
+.patient-card-v2:hover .avatar-sphere {
+    transform: scale(1.08) translateY(-5px) !important;
+    box-shadow: 0 15px 35px rgba(142, 184, 161, 0.25);
+    border-color: var(--primary-light);
+    border-radius: 30% !important;
+}
+
+/* ==========================================
+   MODALS (MOBILE-FIRST RESILIENCE)
+   ========================================== */
+/* REDUNDANT MODAL STYLES REMOVED - NOW HANDLED GLOBALLY IN App.css */
+
+.modal-header-v2 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: clamp(15px, 4vw, 25px);
+}
+
+.modal-header-v2 h2 {
+    font-size: clamp(1.2rem, 5vw, 1.5rem);
+    font-weight: 700;
+    color: var(--text-main);
+    margin: 0;
+}
+
+/* Avatar Stage Refinement */
+.avatar-stage {
+    background: var(--primary-light);
+    border-radius: 24px;
+    padding: 20px;
+    margin-bottom: 25px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid rgba(142, 184, 161, 0.1);
+}
+
+.avatar-preview-v2 {
+    width: 85px;
+    height: 85px;
+    border-radius: 28px;
+    background: white;
+    box-shadow: var(--shadow-sm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+    border: 3px solid white;
+}
+
+.avatar-preview-v2 img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: inherit;
+}
+
+.selector-controls {
+    display: flex;
+    background: rgba(0, 0, 0, 0.05);
+    padding: 4px;
+    border-radius: 14px;
+    width: 100%;
+    max-width: 300px;
+}
+
+.control-pill {
+    flex: 1;
+    border: none;
+    background: none;
+    padding: 8px 5px;
+    border-radius: 10px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--text-soft);
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.control-pill.active {
+    background: white;
+    color: var(--primary);
+    box-shadow: var(--shadow-sm);
+}
+
+.emoji-grid-v2 {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 8px;
+    margin-top: 15px;
+    width: 100%;
+}
+
+/* Form Layout Resilience */
+.premium-form-grid {
+    display: grid;
+    gap: clamp(12px, 3vw, 20px);
+}
+
+.dual-columns {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+@media (max-width: 450px) {
+    .dual-columns {
+        grid-template-columns: 1fr;
+    }
+}
+
+.field-label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    margin-bottom: 6px;
+    display: block;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+}
+
+.input-soft {
+    width: 100%;
+    box-sizing: border-box;
+    background: var(--secondary-light);
+    border: 1px solid transparent;
+    padding: 14px 16px;
+    border-radius: 16px;
+    font-size: 0.95rem;
+    color: var(--text-main);
+    transition: var(--transition);
+}
+
+.input-soft:focus {
+    outline: none;
+    background: white;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 4px var(--primary-light);
+}
+
+/* Scoped Patient Buttons - DEFENSE AGAINST OVERRIDES */
+.patients-container .btn-premium-submit {
+    width: 100%;
+    height: 56px;
+    background: #E8F5E9 !important;
+    color: #1B5E20 !important;
+    border: 1.5px solid rgba(27, 94, 32, 0.12);
+    border-radius: 18px;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 8px 18px rgba(142, 184, 161, 0.12);
+    margin-top: 10px;
+    transition: var(--transition);
+}
+
+.patients-container .btn-premium-submit:hover {
+    background: #D7EDE0 !important;
+    transform: translateY(-2px);
+    box-shadow: 0 12px 28px rgba(142, 184, 161, 0.2);
+}
+
+/* Detail Modal Pills */
+.patients-container .btn-pill {
+    height: 52px;
+    border-radius: 20px;
+    border: 1px solid transparent;
+    font-weight: 650;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.patients-container .btn-pill-primary {
+    background: #E8F5E9 !important;
+    /* STRICT PASTEL */
+    color: #1B5E20 !important;
+    border: 1.5px solid rgba(27, 94, 32, 0.1);
+}
+
+.patients-container .btn-pill-primary:hover {
+    background: #D7EDE0 !important;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 22px rgba(142, 184, 161, 0.18);
+}
+
+.patients-container .btn-pill-secondary {
+    background: #FDFDFD !important;
+    color: #546E7A !important;
+    border: 1.5px solid rgba(0, 0, 0, 0.08);
+}
+
+/* Detail View Unified Styles - Handled Globally where possible */
+.detail-content-scroll {
+    flex: 1;
+    overflow-y: auto;
+    padding: 0 10px;
+    margin-bottom: 10px;
+}
+
+.detail-content-scroll::-webkit-scrollbar {
+    width: 6px;
+}
+
+.detail-content-scroll::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.05);
+    border-radius: 10px;
+}
+
+.detail-header-row {
+    position: absolute;
+    top: 28px;
+    /* Perfectly below handle */
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: center;
+    z-index: 10;
+}
+
+.load-pill {
+    background: #FAF3EF !important;
+    color: #B28D6F !important;
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 0.72rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    border: 1px solid rgba(178, 141, 111, 0.15);
+    white-space: nowrap;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.02);
+}
+
+.detail-avatar {
+    margin: 1.5rem auto 1rem;
+    width: 100px;
+    height: 100px;
+    font-size: 3rem;
+}
+
+.detail-title {
+    color: var(--text-main);
+    margin: 0 0 4px;
+    font-size: 1.5rem;
+}
+
+.detail-subtitle {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    margin: 0;
+}
+
+.detail-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 30px;
+}
+
+@media (max-width: 380px) {
+    .detail-actions {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Detail Modal Pills */
+.patients-container .btn-pill {
+    height: 52px;
+    border-radius: 20px;
+    border: 1px solid transparent;
+    font-weight: 650;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.patients-container .btn-pill-primary {
+    background: #E8F5E9 !important;
+    /* STRICT PASTEL */
+    color: #1B5E20 !important;
+    border: 1.5px solid rgba(27, 94, 32, 0.1);
+}
+
+.patients-container .btn-pill-primary:hover {
+    background: #D7EDE0 !important;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 22px rgba(142, 184, 161, 0.18);
+}
+
+.patients-container .btn-pill-secondary {
+    background: #FDFDFD !important;
+    color: #546E7A !important;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+/* Prevent Scrolling when modal open */
+body.modal-open {
+    overflow: hidden;
+}
+
+/* Empty State */
+.patients-empty {
+    text-align: center;
+    padding: 60px 20px;
+    color: var(--text-muted);
+}
+
+.patients-empty-icon {
+    font-size: 4rem;
+    margin-bottom: 20px;
+    opacity: 0.5;
+}
+
+/* History Section */
+.history-section {
+    margin-top: 10px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.history-scroll {
+    max-height: 200px;
+    overflow-y: auto;
+    margin-top: 10px;
+    padding-right: 10px;
+}
+
+.history-scroll::-webkit-scrollbar {
+    width: 4px;
+}
+
+.history-scroll::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+.history-item {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.history-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #1B5E20 !important;
+    /* Fixed Clinical Green */
+    margin-top: 6px;
+    flex-shrink: 0;
+    box-shadow: 0 0 10px rgba(27, 94, 32, 0.2);
+}
+
+.history-item:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    left: 3.5px;
+    top: 14px;
+    bottom: -20px;
+    width: 1px;
+    background: rgba(0, 0, 0, 0.05);
+}
+
+.history-main {
+    flex: 1;
+}
+
+.history-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 4px;
+}
+
+.h-mood {
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 0.05em;
+    color: var(--primary, #8EB8A1);
+    text-transform: uppercase;
+}
+
+.h-date {
+    font-size: 0.7rem;
+    color: var(--text-muted);
+}
+
+.h-intent {
+    margin: 0;
+    font-size: 0.85rem;
+    color: var(--text-soft);
+    font-weight: 500;
+}
+
+.loading-text,
+.history-empty {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    font-style: italic;
+    text-align: center;
+    padding: 20px 0;
+}
+
+/* ==========================================
+   RESPONSIVE - IPHONE OPTIMIZED
+   ========================================== */
+@media (max-width: 600px) {
+    .patients-container {
+        padding-bottom: env(safe-area-inset-bottom, 20px);
+    }
+
+    .patients-header {
+        position: sticky;
+        top: 0;
+        left: 0;
+        right: 0;
+        width: 100%;
+        height: 80px;
+        padding: 0 16px;
+        background: transparent;
+        /* Remove bar look */
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+        border-bottom: none;
+        display: grid;
+        grid-template-columns: 50px 1fr 50px;
+        align-items: center;
+        box-sizing: border-box;
+        z-index: 1000;
+        box-shadow: none;
+    }
+
+    .btn-add-action {
+        width: 42px;
+        height: 42px;
+        justify-self: end;
+    }
+
+    .patients-viewport {
+        padding: 65px 16px 30px;
+        /* Reduced top padding as header is now shrunken */
+    }
+
+    .patients-grid-v2 {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+    }
+
+    .patient-card-v2 {
+        max-width: 100%;
+    }
+
+    .avatar-sphere {
+        width: 80px;
+        height: 80px;
+        font-size: 2.2rem;
+        margin-bottom: 12px;
+    }
+
+    /* ==========================================
+       PROFESSIONAL BOTTOM SHEET DESIGN
+       ========================================== */
+    .premium-modal-overlay {
+        align-items: flex-end;
+        /* Anchor to bottom */
+        padding: 0;
+        background: rgba(44, 62, 80, 0.4);
+        /* Softer overlay */
+    }
+
+    .sheet-handle {
+        width: 36px;
+        height: 4px;
+        background: rgba(0, 0, 0, 0.1);
+        border-radius: 2px;
+        margin: 10px auto 15px;
+        flex-shrink: 0;
+    }
+
+    .premium-modal-card {
+        padding: 0 16px env(safe-area-inset-bottom, 25px);
+        border-radius: 32px 32px 0 0;
+        max-height: 85vh;
+        width: 100vw;
+        max-width: none;
+        margin: 0;
+        box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.1);
+        animation: slideUpSheet 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+
+    @keyframes slideUpSheet {
+        from {
+            transform: translateY(100%);
+        }
+
+        to {
+            transform: translateY(0);
+        }
+    }
+
+    .detail-stage {
+        padding: 0 16px env(safe-area-inset-bottom, 25px);
+        max-width: none;
+        width: 100vw;
+        border-radius: 32px 32px 0 0;
+        margin: 0;
+        box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.1);
+        animation: slideUpSheet 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+
+    .detail-header-row {
+        position: static;
+        margin: 5px 0 15px;
+        display: flex;
+        justify-content: center;
+    }
+
+    .load-pill {
+        padding: 4px 12px;
+        font-size: 0.65rem;
+    }
+
+    .detail-avatar {
+        margin: 5px auto 12px;
+        width: 72px;
+        height: 72px;
+        font-size: 2.2rem;
+    }
+
+    .detail-title {
+        font-size: 1.3rem;
+        margin-bottom: 2px;
+    }
+
+    .detail-subtitle {
+        font-size: 0.8rem;
+    }
+
+    .history-section {
+        margin-top: 10px;
+        padding-top: 15px;
+    }
+
+    .history-scroll {
+        max-height: 14rem;
+    }
+
+    .detail-actions {
+        margin-top: 25px;
+        gap: 12px;
+        padding-bottom: 5px;
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .btn-pill {
+        height: 48px;
+        font-size: 0.9rem;
+        border-radius: 14px;
+    }
+
+    .btn-premium-submit {
+        height: 52px;
+        font-size: 1rem;
+        border-radius: 16px;
+    }
+}

@@ -1,0 +1,178 @@
+{
+    "common": {
+        "loading": "Cargando...",
+        "save": "Guardar",
+        "cancel": "Cancelar",
+        "edit": "Editar",
+        "delete": "Eliminar",
+        "back": "Volver"
+    },
+    "auth": {
+        "login": "Iniciar Sesión",
+        "signup": "Registrarse",
+        "email": "Correo",
+        "password": "Contraseña",
+        "login_button": "Iniciar Sesión",
+        "signup_link": "¿No tienes cuenta?",
+        "welcome_back": "Bienvenido de nuevo",
+        "subtitle": "Inicia sesión en tu cuenta de ClaraMente",
+        "create_one": "Crear una"
+    },
+    "home": {
+        "welcome": "Bienvenido",
+        "check_in": "Registrar",
+        "recent_activity": "Actividad Reciente"
+    },
+    "dashboard": {
+        "welcome": "Bienvenido a ClaraMente",
+        "welcome_personal": "Bienvenido",
+        "tagline": "Tu compañero terapéutico para la práctica consciente",
+        "tagline_personal": "Tu compañero terapéutico para la práctica consciente",
+        "patients": {
+            "title": "Pacientes",
+            "subtitle": "Círculo Terapéutico",
+            "count_one": "{{count}} Paciente",
+            "count_other": "{{count}} Pacientes"
+        },
+        "colleagues": {
+            "title": "Compañeros",
+            "subtitle": "Círculo Profesional",
+            "count_one": "{{count}} Compañero",
+            "count_other": "{{count}} Compañeros"
+        },
+        "events": {
+            "title": "Eventos",
+            "subtitle": "Hitos de Vida",
+            "count_one": "{{count}} Evento",
+            "count_other": "{{count}} Eventos"
+        },
+        "chat": {
+            "title": "Compy",
+            "subtitle": "Diálogo Terapéutico",
+            "status": "Siempre Disponible"
+        }
+    },
+    "patients": {
+        "title": "Pacientes",
+        "subtitle": "Círculo Terapéutico",
+        "back": "Volver",
+        "add_action": "Añadir Paciente",
+        "empty_title": "Tu círculo está tranquilo",
+        "empty_text": "Añade un paciente para comenzar tu apoyo guiado.",
+        "add_first": "Añadir Primer Paciente",
+        "new_entry": "Nueva Entrada",
+        "new_patient_title": "Nuevo Paciente",
+        "avatar_emoji": "Emoji",
+        "avatar_photo": "Foto",
+        "avatar_initials": "Iniciales",
+        "paste_url": "Pega la URL de la imagen aquí...",
+        "alias_label": "Alias o Identificador",
+        "alias_placeholder": "Mantenlo privado (ej. Maria G.)",
+        "age_label": "Edad",
+        "optional_placeholder": "Opcional",
+        "start_date_label": "Fecha de Inicio",
+        "description_label": "Descripción Breve",
+        "description_placeholder": "Contexto de la terapia...",
+        "add_button": "Añadir al Círculo",
+        "emotional_load": "Carga Emocional",
+        "record": "Historial del Paciente",
+        "notes": "Notas",
+        "not_set": "No establecido",
+        "member_since": "Miembro Desde",
+        "unknown": "Desconocido",
+        "clinical_history": "Historial Clínico",
+        "loading_history": "Cargando registros...",
+        "no_history": "No hay registros aún para este paciente.",
+        "close": "Cerrar",
+        "deep_analysis": "Análisis Profundo",
+        "check_in": "Registrar",
+        "updating": "Actualizando tu círculo...",
+        "trend_label": "Tendencia: {{trend}}",
+        "trends": {
+            "improving": "Mejorando",
+            "stable": "Estable",
+            "declining": "En declive"
+        },
+        "age_short": "{{age}}a",
+        "history_energy": "Energía",
+        "history_note": "Nota"
+    },
+    "check_in": {
+        "title_prefix": "Registrando sobre:",
+        "step1_title": "¿Cómo te sientes ahora mismo?",
+        "moods": {
+            "CALM": "CALMA",
+            "CONTENT": "CONTENTO",
+            "ENERGIZED": "ENERGIZADO",
+            "ANXIOUS": "ANSIOSO",
+            "FRUSTRATED": "FRUSTRADO",
+            "DRAINED": "AGOTADO"
+        },
+        "energy_label": "Intensidad de Energía",
+        "next_button": "Confirmar Estado",
+        "step2_title": "¿Cuál es tu intención para este momento?",
+        "intents": {
+            "RELEASE": "Espacio Seguro para Desahogarse",
+            "TRACK": "Monitorear mi Progreso",
+            "SEEK_CLARITY": "Buscar Claridad",
+            "SEEK_VALIDATION": "Necesito Apoyo Suave",
+            "SEEK_DISTANCE": "Tiempo para Alejarme"
+        },
+        "note_placeholder": "Añade una nota privada (opcional)...",
+        "submit_button": "Finalizar Registro",
+        "submitting": "Grabando...",
+        "success": "¡Registro guardado!",
+        "error": "Error al enviar"
+    },
+    "colleagues_module": {
+        "title": "Compañeros",
+        "subtitle": "Círculo Profesional",
+        "back": "Volver",
+        "add_action": "Añadir Compañero",
+        "loading": "Cargando tu círculo...",
+        "empty_title": "Tu círculo está tranquilo",
+        "empty_text": "Añade un compañero para expandir tu red de apoyo.",
+        "add_first": "Añadir Primer Compañero",
+        "new_title": "Nuevo Compañero",
+        "name_label": "Nombre",
+        "name_placeholder": "Nombre del compañero...",
+        "hierarchy_label": "Jerarquía",
+        "relationship_label": "Tipo de Relación",
+        "relationships": {
+            "Peer": "Par",
+            "Mentor": "Mentor",
+            "Supervisee": "Supervisado",
+            "Boss": "Jefe/Jefa"
+        },
+        "characteristics_label": "Características (Opcional)",
+        "characteristics_placeholder": "ej. Narcisista, Sumiso, Bloqueado...",
+        "add_button": "Añadir al Círculo",
+        "contact_type": "Contacto Profesional",
+        "history_title": "Historial de Interacción",
+        "loading_history": "Cargando registros...",
+        "no_history": "No hay registros aún para este compañero.",
+        "close": "Cerrar",
+        "deep_analysis": "Análisis Profundo",
+        "check_in": "Registrar"
+    },
+    "events_module": {
+        "title": "Eventos",
+        "subtitle": "Hitos de Vida",
+        "back": "Volver",
+        "add_action": "Añadir Evento",
+        "loading": "Cargando eventos...",
+        "empty_title": "Sin eventos aún",
+        "empty_text": "Añade eventos importantes para rastrear su impacto.",
+        "add_first": "Añadir Primer Evento",
+        "new_title": "Nuevo Evento",
+        "title_label": "Título del Evento",
+        "title_placeholder": "Describe el evento...",
+        "impact_level_label": "Nivel de Impacto",
+        "impact_question": "¿Qué tan significativo es este evento?",
+        "add_button": "Añadir Evento",
+        "impact_display": "Impacto: {{level}}/10",
+        "close": "Cerrar",
+        "deep_analysis": "Análisis Profundo",
+        "check_in": "Registrar"
+    }
+}

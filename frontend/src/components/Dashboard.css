@@ -1,0 +1,391 @@
+/* ==========================================
+   CLARAMENTE - PREMIUM MAIN DASHBOARD
+   The Flagship Experience - WOW Factor
+   ========================================== */
+
+:root {
+    --patients-color: #8EB8A1;
+    --patients-light: #F0F7F3;
+    --colleagues-color: #A0A0D0;
+    --colleagues-light: #F3F3FA;
+    --events-color: #F4A261;
+    --events-light: #FEF6EF;
+    --chat-color: #5DADE2;
+    --chat-light: #EBF5FB;
+    --bg-app: #FDFDFD;
+    --bg-glass: rgba(255, 255, 255, 0.85);
+    --text-main: #2C3E50;
+    --text-soft: #607D8B;
+    --text-muted: #90A4AE;
+    --blur-glass: blur(16px);
+    --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.04);
+    --shadow-md: 0 12px 32px rgba(0, 0, 0, 0.08);
+    --shadow-lg: 0 20px 48px rgba(0, 0, 0, 0.12);
+    --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+    --transition: all 0.5s var(--ease-out);
+}
+
+/* ==========================================
+   MAIN CONTAINER
+   ========================================== */
+.dashboard-container {
+    height: 100%;
+    width: 100%;
+    background: var(--bg-app);
+    background-image:
+        radial-gradient(at 10% 20%, var(--patients-light) 0, transparent 40%),
+        radial-gradient(at 90% 80%, var(--colleagues-light) 0, transparent 40%),
+        radial-gradient(at 50% 50%, var(--events-light) 0, transparent 50%),
+        radial-gradient(at 90% 20%, var(--chat-light) 0, transparent 40%);
+    background-attachment: fixed;
+    position: relative;
+    overflow: hidden;
+    font-family: 'Instrument Sans', 'Inter', -apple-system, sans-serif;
+    padding: clamp(10px, 4vw, 40px);
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    /* Evenly distribute greeting and grid */
+}
+
+/* ==========================================
+   ATMOSPHERIC BLOBS
+   ========================================== */
+.bg-blob {
+    position: fixed;
+    border-radius: 50%;
+    filter: blur(100px);
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0.12;
+    animation: megaDrift 30s ease-in-out infinite;
+}
+
+.blob-1 {
+    width: 500px;
+    height: 500px;
+    background: linear-gradient(135deg, var(--patients-color), var(--events-color));
+    top: -150px;
+    left: -150px;
+    animation-duration: 35s;
+}
+
+.blob-2 {
+    width: 450px;
+    height: 450px;
+    background: linear-gradient(135deg, var(--colleagues-color), var(--patients-color));
+    bottom: -100px;
+    right: -100px;
+    animation-duration: 40s;
+    animation-delay: -10s;
+}
+
+.blob-3 {
+    width: 400px;
+    height: 400px;
+    background: linear-gradient(135deg, var(--events-color), var(--colleagues-color));
+    top: 50%;
+    left: 50%;
+    animation-duration: 45s;
+    animation-delay: -20s;
+}
+
+@keyframes megaDrift {
+
+    0%,
+    100% {
+        transform: translate(0, 0) scale(1) rotate(0deg);
+    }
+
+    33% {
+        transform: translate(50px, 80px) scale(1.1) rotate(5deg);
+    }
+
+    66% {
+        transform: translate(-30px, 40px) scale(0.9) rotate(-5deg);
+    }
+}
+
+/* ==========================================
+   HEADER GROUP (GREETING + QUOTE) - Unified Look
+   ========================================== */
+.dashboard-header-group {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    padding: 0.5rem 1rem;
+    background: rgba(255, 255, 255, 0.4);
+    border-radius: 20px;
+    backdrop-filter: blur(4px);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    max-width: 550px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+    flex-shrink: 0;
+}
+
+.dashboard-hero {
+    animation: fadeInDown 1.2s var(--ease-out);
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.hero-greeting {
+    font-size: clamp(0.95rem, 4vw, 2.2rem);
+    /* Increased upper bound for web */
+    font-weight: 600;
+    color: #475569;
+    margin: 0;
+    letter-spacing: -0.5px;
+}
+
+.hero-tagline {
+    font-size: clamp(0.7rem, 2vw, 1.1rem);
+    /* Increased upper bound for web */
+    color: #94A3B8;
+    margin: 0;
+}
+
+.dashboard-insight-quote {
+    animation: fadeIn 1s ease-out;
+}
+
+.dashboard-insight-quote p {
+    font-size: clamp(0.75rem, 2.5vw, 1.15rem);
+    /* Increased upper bound for web */
+    color: #64748B;
+    font-style: italic;
+    margin: 0;
+    opacity: 0.9;
+}
+
+/* ==========================================
+   MODULE CARDS GRID
+   ========================================== */
+.dashboard-grid {
+    position: relative;
+    z-index: 10;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: clamp(20px, 5vw, 40px);
+    /* Increased gap for prominence */
+    max-width: 850px;
+    /* Wider grid on web */
+    margin: 0 auto;
+    padding: 0;
+    flex-shrink: 0;
+}
+
+/* ==========================================
+   MODULE CARDS - PREMIUM DESIGN
+   ========================================== */
+.module-card {
+    background: white;
+    border-radius: 28px;
+    padding: clamp(1.25rem, 4vw, 3rem) clamp(1rem, 2vw, 2.5rem);
+    box-shadow:
+        0 4px 6px rgba(0, 0, 0, 0.02),
+        0 12px 30px rgba(0, 0, 0, 0.04);
+    border: 1px solid rgba(0, 0, 0, 0.03);
+    cursor: pointer;
+    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.module-icon {
+    width: clamp(50px, 12vw, 85px);
+    height: clamp(50px, 12vw, 85px);
+    border-radius: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    margin: 0 auto clamp(12px, 2.5vw, 20px);
+    transition: all 0.5s var(--ease-out);
+}
+
+.module-title {
+    font-size: clamp(1rem, 2.5vw, 1.4rem);
+    font-weight: 750;
+    color: #1A202C;
+    margin-bottom: 6px;
+    text-align: center;
+}
+
+.module-subtitle {
+    font-size: clamp(0.7rem, 1.6vw, 0.9rem);
+    color: #718096;
+    margin-bottom: clamp(12px, 2.5vw, 20px);
+    text-align: center;
+    line-height: 1.25;
+}
+
+.module-count {
+    padding: 8px 16px;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.4px;
+    text-transform: uppercase;
+    width: fit-content;
+}
+
+/* ==========================================
+   DAILY INSIGHT QUOTE (NEW SUBTLE LOOK)
+   ========================================== */
+.dashboard-insight-quote {
+    max-width: 600px;
+    margin: -10px auto 30px;
+    text-align: center;
+    position: relative;
+    padding: 0 20px;
+    animation: fadeIn 1s ease-out;
+}
+
+/* Removed as it's now part of header-group */
+.dashboard-insight-quote {
+    display: none;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+.module-count-patients {
+    background: rgba(142, 184, 161, 0.12);
+    color: #5D7C6B;
+}
+
+.module-count-colleagues {
+    background: rgba(160, 160, 208, 0.12);
+    color: #6B6B9D;
+}
+
+.module-count-events {
+    background: rgba(244, 162, 97, 0.12);
+    color: #C47845;
+}
+
+.module-count-chat {
+    background: rgba(93, 173, 226, 0.12);
+    color: #2E86AB;
+}
+
+/* ==========================================
+   RESPONSIVE DESIGN
+   ========================================== */
+/* ==========================================
+   RESPONSIVE DESIGN - IPHONE OPTIMIZED
+   ========================================== */
+@media (max-width: 900px) {
+    .dashboard-grid {
+        grid-template-columns: 1fr 1fr;
+        max-width: 600px;
+    }
+
+    .hero-greeting {
+        font-size: 2.2rem;
+    }
+
+    .hero-tagline {
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .dashboard-container {
+        padding: 5px 12px;
+    }
+
+    .dashboard-header-group {
+        padding: 0.5rem;
+        margin-top: 5px;
+        border-radius: 12px;
+    }
+
+    .dashboard-grid {
+        gap: 12px;
+        /* Slightly tighter gap */
+        grid-template-columns: 1fr 1fr;
+        padding-bottom: 0;
+    }
+
+    .module-card {
+        padding: clamp(1rem, 4vh, 2rem) 8px;
+        /* Slightly smaller padding */
+        border-radius: 20px;
+    }
+
+    .module-icon {
+        width: 50px;
+        height: 50px;
+        font-size: 2rem;
+        margin-bottom: 8px;
+    }
+
+    .module-title {
+        font-size: clamp(0.9rem, 4vw, 1.1rem);
+    }
+
+    .module-subtitle {
+        font-size: 0.75rem;
+    }
+}
+
+/* ==========================================
+   LOADING STATE
+   ========================================== */
+.dashboard-loading {
+    text-align: center;
+    padding: 80px 20px;
+    color: var(--text-muted);
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+/* Pulse animation for loading */
+@keyframes pulse {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.5;
+    }
+}
+
+.dashboard-loading {
+    animation: pulse 2s ease-in-out infinite;
+}

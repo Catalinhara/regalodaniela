@@ -1,0 +1,178 @@
+{
+    "common": {
+        "loading": "Loading...",
+        "save": "Save",
+        "cancel": "Cancel",
+        "edit": "Edit",
+        "delete": "Delete",
+        "back": "Back"
+    },
+    "auth": {
+        "login": "Login",
+        "signup": "Sign Up",
+        "email": "Email",
+        "password": "Password",
+        "login_button": "Log In",
+        "signup_link": "Don't have an account?",
+        "welcome_back": "Welcome Back",
+        "subtitle": "Sign in to your ClaraMente account",
+        "create_one": "Create one"
+    },
+    "home": {
+        "welcome": "Welcome",
+        "check_in": "Check In",
+        "recent_activity": "Recent Activity"
+    },
+    "dashboard": {
+        "welcome": "Welcome to ClaraMente",
+        "welcome_personal": "Welcome",
+        "tagline": "Your therapeutic companion for mindful practice",
+        "tagline_personal": "Your therapeutic companion for mindful practice",
+        "patients": {
+            "title": "Patients",
+            "subtitle": "Therapeutic Circle",
+            "count_one": "{{count}} Patient",
+            "count_other": "{{count}} Patients"
+        },
+        "colleagues": {
+            "title": "Colleagues",
+            "subtitle": "Professional Circle",
+            "count_one": "{{count}} Colleague",
+            "count_other": "{{count}} Colleagues"
+        },
+        "events": {
+            "title": "Events",
+            "subtitle": "Life Milestones",
+            "count_one": "{{count}} Event",
+            "count_other": "{{count}} Events"
+        },
+        "chat": {
+            "title": "Compy",
+            "subtitle": "Therapeutic Dialogue",
+            "status": "Always Available"
+        }
+    },
+    "patients": {
+        "title": "Patients",
+        "subtitle": "Therapeutic Circle",
+        "back": "Back",
+        "add_action": "Add Patient",
+        "empty_title": "Your circle is quiet",
+        "empty_text": "Add a patient to begin your guided support.",
+        "add_first": "Add First Patient",
+        "new_entry": "New Entry",
+        "new_patient_title": "New Patient",
+        "avatar_emoji": "Emoji",
+        "avatar_photo": "Photo",
+        "avatar_initials": "Initials",
+        "paste_url": "Paste image URL here...",
+        "alias_label": "Alias or Identifier",
+        "alias_placeholder": "Keep it private (e.g. Maria G.)",
+        "age_label": "Age",
+        "optional_placeholder": "Optional",
+        "start_date_label": "Start Date",
+        "description_label": "Brief Description",
+        "description_placeholder": "Context of therapy...",
+        "add_button": "Add to Circle",
+        "emotional_load": "Emotional Load",
+        "record": "Patient Record",
+        "notes": "Notes",
+        "not_set": "Not set",
+        "member_since": "Member Since",
+        "unknown": "Unknown",
+        "clinical_history": "Clinical History",
+        "loading_history": "Loading records...",
+        "no_history": "No check-ins yet for this patient.",
+        "close": "Close",
+        "deep_analysis": "Deep Analysis",
+        "check_in": "Check-in",
+        "updating": "Updating your circle...",
+        "trend_label": "Trend: {{trend}}",
+        "trends": {
+            "improving": "Improving",
+            "stable": "Stable",
+            "declining": "Declining"
+        },
+        "age_short": "{{age}}y",
+        "history_energy": "Energy",
+        "history_note": "Note"
+    },
+    "check_in": {
+        "title_prefix": "Checking in on:",
+        "step1_title": "How are you feeling right now?",
+        "moods": {
+            "CALM": "CALM",
+            "CONTENT": "CONTENT",
+            "ENERGIZED": "ENERGIZED",
+            "ANXIOUS": "ANXIOUS",
+            "FRUSTRATED": "FRUSTRATED",
+            "DRAINED": "DRAINED"
+        },
+        "energy_label": "Energy Intensity",
+        "next_button": "Confirm State",
+        "step2_title": "What's your intention for this moment?",
+        "intents": {
+            "RELEASE": "Safe Space to Vent",
+            "TRACK": "Monitor my Progress",
+            "SEEK_CLARITY": "Search for Clarity",
+            "SEEK_VALIDATION": "Need Gentle Support",
+            "SEEK_DISTANCE": "Time to Step Back"
+        },
+        "note_placeholder": "Add a private note to this moment (optional)...",
+        "submit_button": "Finish Check-In",
+        "submitting": "Recording...",
+        "success": "Check-in recorded!",
+        "error": "Failed to submit"
+    },
+    "colleagues_module": {
+        "title": "Colleagues",
+        "subtitle": "Professional Circle",
+        "back": "Back",
+        "add_action": "Add Colleague",
+        "loading": "Loading your circle...",
+        "empty_title": "Your circle is quiet",
+        "empty_text": "Add a colleague to expand your support network.",
+        "add_first": "Add First Colleague",
+        "new_title": "New Colleague",
+        "name_label": "Name",
+        "name_placeholder": "Colleague name...",
+        "hierarchy_label": "Hierarchy",
+        "relationship_label": "Relationship Type",
+        "relationships": {
+            "Peer": "Peer",
+            "Mentor": "Mentor",
+            "Supervisee": "Supervisee",
+            "Boss": "Boss"
+        },
+        "characteristics_label": "Characteristics (Optional)",
+        "characteristics_placeholder": "e.g. Narcissistic, Submissive, Blocked...",
+        "add_button": "Add to Circle",
+        "contact_type": "Professional Contact",
+        "history_title": "Interaction History",
+        "loading_history": "Loading records...",
+        "no_history": "No check-ins yet for this colleague.",
+        "close": "Close",
+        "deep_analysis": "Deep Analysis",
+        "check_in": "Check-in"
+    },
+    "events_module": {
+        "title": "Events",
+        "subtitle": "Life Milestones",
+        "back": "Back",
+        "add_action": "Add Event",
+        "loading": "Loading events...",
+        "empty_title": "No events yet",
+        "empty_text": "Add significant life events to track their impact.",
+        "add_first": "Add First Event",
+        "new_title": "New Event",
+        "title_label": "Event Title",
+        "title_placeholder": "Describe the event...",
+        "impact_level_label": "Impact Level",
+        "impact_question": "How significant is this event?",
+        "add_button": "Add Event",
+        "impact_display": "Impact: {{level}}/10",
+        "close": "Close",
+        "deep_analysis": "Deep Analysis",
+        "check_in": "Check-in"
+    }
+}

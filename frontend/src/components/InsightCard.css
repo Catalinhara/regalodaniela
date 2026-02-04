@@ -1,0 +1,211 @@
+/* ==========================================
+   CLARAMENTE - PREMIUM INTEGRATED INSIGHT CARD
+   Glassmorphism & Therapeutic High-End Design
+   ========================================== */
+
+.insight-card-subtle {
+    max-width: 600px;
+    width: 90%;
+    margin: 0.5rem auto 1rem;
+    background: transparent;
+    padding: 0;
+    transition: all 0.3s ease;
+    animation: insightEntrance 0.8s var(--ease-out);
+}
+
+@keyframes insightEntrance {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.insight-card-premium:hover {
+    transform: translateY(-4px);
+    background: rgba(255, 255, 255, 0.75);
+    box-shadow:
+        0 20px 40px rgba(0, 0, 0, 0.06),
+        0 0 20px rgba(142, 184, 161, 0.1);
+}
+
+.insight-card-inner {
+    padding: 2rem;
+}
+
+.insight-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.insight-badge {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(142, 184, 161, 0.1);
+    padding: 8px 16px;
+    border-radius: 100px;
+    font-size: 0.75rem;
+    font-weight: 800;
+    color: #5D7C6B;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.insight-sparkle {
+    font-size: 1.2rem;
+    filter: drop-shadow(0 0 5px rgba(255, 215, 0, 0.5));
+    animation: floatSparkle 3s ease-in-out infinite;
+}
+
+@keyframes floatSparkle {
+
+    0%,
+    100% {
+        transform: translateY(0) rotate(0);
+    }
+
+    50% {
+        transform: translateY(-5px) rotate(15deg);
+    }
+}
+
+/* CONTENT AREA */
+.observation-section {
+    position: relative;
+    padding-left: 1.5rem;
+}
+
+.quote-mark {
+    display: none;
+    /* Removed for subtlety as per user request */
+}
+
+.observation-text-subtle {
+    font-size: clamp(0.9rem, 2.5vw, 1.1rem);
+    line-height: 1.4;
+    color: #4A5568;
+    font-weight: 500;
+    font-style: italic;
+    margin: 0;
+    text-align: center;
+    opacity: 0.85;
+}
+
+/* REVEALED DETAILS */
+.revealed-details {
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+    display: grid;
+    gap: 1.5rem;
+    animation: fadeInSlideUp 0.5s ease;
+}
+
+@keyframes fadeInSlideUp {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.detail-group label {
+    display: block;
+    font-size: 0.65rem;
+    font-weight: 800;
+    color: #90A4AE;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    margin-bottom: 8px;
+}
+
+.detail-group p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: #2D3748;
+    margin: 0;
+}
+
+.detail-group.suggestion {
+    background: #F0F7FF;
+    padding: 1.25rem;
+    border-radius: 20px;
+    border: 1px solid #E3F2FD;
+}
+
+.detail-group.suggestion label {
+    color: #2E86AB;
+}
+
+/* FOOTER ACTIONS */
+.insight-card-footer {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: center;
+}
+
+.btn-reveal-insight {
+    background: linear-gradient(135deg, #8EB8A1 0%, #66A087 100%);
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 100px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(102, 160, 135, 0.3);
+    transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.btn-reveal-insight:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(102, 160, 135, 0.4);
+}
+
+.btn-hide-insight {
+    background: transparent;
+    color: #90A4AE;
+    border: 1.5px solid #E2E8F0;
+    padding: 10px 24px;
+    border-radius: 100px;
+    font-weight: 700;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.btn-hide-insight:hover {
+    background: #F7FAFC;
+    color: #4A5568;
+}
+
+/* MOBILE OPTIMIZATIONS */
+@media (max-width: 600px) {
+    .insight-card-premium {
+        border-radius: 24px;
+        margin-bottom: 2rem;
+    }
+
+    .insight-card-inner {
+        padding: 1.5rem;
+    }
+
+    .observation-text {
+        font-size: 1.15rem;
+    }
+
+    .insight-card-header {
+        margin-bottom: 1.5rem;
+    }
+}

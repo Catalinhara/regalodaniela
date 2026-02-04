@@ -1,0 +1,293 @@
+/* ==========================================
+   CLARAMENTE - COMPANION CHAT OVERLAY
+   Dedicated Styles for Stability (Blue Theme)
+   ========================================== */
+
+:root {
+    --cc-blue-light: #E3F2FD;
+    --cc-blue-main: #42A5F5;
+    --cc-blue-dark: #1565C0;
+    --cc-text: #37474F;
+    --cc-glass: rgba(255, 255, 255, 0.92);
+}
+
+/* 
+   THE MODAL CONTAINER 
+   Positions itself on top of EVERYTHING.
+   Matches AnalysisChat structure for consistency.
+*/
+.chat-overlay-fixed {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: rgba(44, 62, 80, 0.2);
+    backdrop-filter: blur(4px);
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    /* Sheet style on mobile */
+    animation: fadeIn 0.3s ease-out;
+}
+
+@media (min-width: 600px) {
+    .chat-overlay-fixed {
+        align-items: center;
+        /* Center modal on desktop */
+        padding: 40px;
+    }
+}
+
+/* 
+   THE CHAT SHEET / CARD
+   Strict Flex Column Layout
+*/
+.chat-sheet {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 96%;
+    /* Leave a sliver at top for "sheet" feel */
+    max-width: 600px;
+    background: #FDFDFD;
+    border-radius: 20px 20px 0 0;
+    box-shadow: 0 -10px 40px rgba(66, 165, 245, 0.15);
+    overflow: hidden;
+    /* Contain inner scroll */
+    position: relative;
+    animation: slideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@media (min-width: 600px) {
+    .chat-sheet {
+        height: 800px;
+        max-height: 90vh;
+        border-radius: 24px;
+    }
+}
+
+/* 
+   1. HEADER (Fixed Flex Item)
+*/
+.cc-header {
+    flex: 0 0 70px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    background: var(--cc-glass);
+    border-bottom: 1px solid rgba(66, 165, 245, 0.1);
+    z-index: 20;
+}
+
+.cc-btn-back {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: rgba(66, 165, 245, 0.05);
+    border: none;
+    color: var(--cc-blue-main);
+    font-size: 1.4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.cc-btn-back:hover {
+    background: rgba(66, 165, 245, 0.1);
+}
+
+.cc-title-group {
+    text-align: center;
+}
+
+.cc-title {
+    font-family: 'Instrument Sans', sans-serif;
+    font-weight: 700;
+    color: #455A64;
+    font-size: 1rem;
+    line-height: 1.2;
+}
+
+.cc-subtitle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    font-size: 0.75rem;
+    color: var(--cc-blue-main);
+    font-weight: 600;
+}
+
+.cc-status-dot {
+    width: 6px;
+    height: 6px;
+    background: var(--cc-blue-main);
+    border-radius: 50%;
+    animation: pulseBlue 2s infinite;
+}
+
+/* 
+   2. MESSAGES (Scrollable Flex Item)
+*/
+.cc-messages {
+    flex: 1 1 auto;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    background-image:
+        radial-gradient(circle at 50% 50%, #E3F2FD 0%, transparent 60%);
+    -webkit-overflow-scrolling: touch;
+}
+
+/* Message Bubbles */
+.cc-msg {
+    max-width: 85%;
+    padding: 12px 18px;
+    border-radius: 18px;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    position: relative;
+    animation: msgPop 0.3s ease-out;
+}
+
+.cc-msg-user {
+    align-self: flex-end;
+    background: var(--cc-blue-main);
+    color: white;
+    border-bottom-right-radius: 4px;
+    font-weight: 500;
+    box-shadow: 0 4px 12px rgba(66, 165, 245, 0.3);
+}
+
+.cc-msg-assistant {
+    align-self: flex-start;
+    background: white;
+    color: var(--cc-text);
+    border: 1px solid rgba(66, 165, 245, 0.1);
+    border-bottom-left-radius: 4px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+}
+
+/* 
+   3. INPUT ISLAND (Fixed Flex Item)
+*/
+.cc-input-area {
+    flex: 0 0 auto;
+    padding: 20px 20px 30px 20px;
+    /* Extra bottom pad for iOS home homebar */
+    background: white;
+    /* Solid background ensures cover */
+    border-top: 1px solid rgba(0, 0, 0, 0.04);
+    z-index: 30;
+}
+
+.cc-input-wrapper {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    /* Center alignment for single-line input feel */
+    background: #F1F8E9;
+    /* Slight tint distinction? Or stick to Blue tint */
+    background: #F5F7FA;
+    padding: 10px;
+    border-radius: 24px;
+    transition: all 0.2s;
+    border: 1px solid rgba(66, 165, 245, 0.1);
+}
+
+.cc-input-wrapper:focus-within {
+    background: white;
+    box-shadow:
+        0 4px 20px rgba(66, 165, 245, 0.15),
+        0 0 0 2px var(--cc-blue-main) inset;
+}
+
+.cc-input {
+    flex: 1;
+    border: none;
+    background: transparent;
+    padding: 10px;
+    font-size: 1rem;
+    font-family: inherit;
+    color: var(--cc-text);
+}
+
+.cc-input:focus {
+    outline: none;
+}
+
+.cc-send-btn {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--cc-blue-main);
+    color: white;
+    border: none;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: transform 0.2s;
+    box-shadow: 0 4px 10px rgba(66, 165, 245, 0.2);
+}
+
+.cc-send-btn:active {
+    transform: scale(0.95);
+}
+
+/* Animations */
+@keyframes slideUp {
+    from {
+        transform: translateY(100%);
+    }
+
+    to {
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes msgPop {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes pulseBlue {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    50% {
+        transform: scale(1.5);
+        opacity: 0.6;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}

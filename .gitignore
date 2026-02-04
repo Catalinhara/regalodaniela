@@ -1,0 +1,38 @@
+# Dependencies
+node_modules/
+dist/
+dist-ssr/
+*.local
+
+# Python
+backend/venv/
+backend/.venv/
+__pycache__/
+*.py[cod]
+*$py.class
+backend/.pytest_cache/
+backend/.mypy_cache/
+
+# Environment
+.env
+.env.development.local
+.env.test.local
+.env.production.local
+.env.local
+backend/.env
+frontend/.env
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Project specific
+logs/
+*.log
+frontend/src/App.tsx.

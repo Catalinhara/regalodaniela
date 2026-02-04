@@ -1,0 +1,254 @@
+/* ==========================================
+   CLARAMENTE - ANALYSIS CHAT MODAL
+   Dedicated Styles for Stability
+   ========================================== */
+
+:root {
+    --ac-amber-light: #FFF8E1;
+    --ac-amber-main: #FFB74D;
+    --ac-amber-dark: #F57C00;
+    --ac-text: #37474F;
+    --ac-glass: rgba(255, 255, 255, 0.92);
+}
+
+/* 
+   THE MODAL CONTAINER 
+   Positions itself on top of EVERYTHING.
+*/
+.analysis-modal-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(8px);
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    /* Sheet style on mobile */
+    animation: fadeIn 0.3s ease-out;
+}
+
+@media (min-width: 600px) {
+    .analysis-modal-overlay {
+        align-items: center;
+        /* Center modal on desktop */
+        padding: 40px;
+    }
+}
+
+/* 
+   THE CHAT SHEET / CARD
+   Strict Flex Column Layout
+*/
+.analysis-sheet {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 96%;
+    /* Leave a sliver at top for "sheet" feel */
+    max-width: 600px;
+    background: #FFFAFA;
+    border-radius: 20px 20px 0 0;
+    box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.15);
+    overflow: hidden;
+    /* Contain inner scroll */
+    position: relative;
+    animation: slideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@media (min-width: 600px) {
+    .analysis-sheet {
+        height: 800px;
+        max-height: 90vh;
+        border-radius: 24px;
+    }
+}
+
+/* 
+   1. HEADER (Fixed Flex Item)
+*/
+.ac-header {
+    flex: 0 0 70px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    background: var(--ac-glass);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+    z-index: 20;
+}
+
+.ac-btn-close {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.05);
+    border: none;
+    color: var(--ac-text);
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.ac-title {
+    font-family: 'Instrument Sans', sans-serif;
+    font-weight: 700;
+    color: #455A64;
+    text-align: center;
+    line-height: 1.2;
+}
+
+.ac-subtitle {
+    display: block;
+    font-size: 0.75rem;
+    color: #90A4AE;
+    font-weight: 500;
+}
+
+/* 
+   2. MESSAGES (Scrollable Flex Item)
+*/
+.ac-messages {
+    flex: 1 1 auto;
+    overflow-y: auto;
+    overflow-x: hidden;
+    /* Prevent horizontal scroll */
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    background-image:
+        radial-gradient(circle at 10% 10%, #FFF8E1 0%, transparent 40%),
+        radial-gradient(circle at 90% 90%, #FFF3E0 0%, transparent 40%);
+    -webkit-overflow-scrolling: touch;
+}
+
+/* Message Bubbles */
+.ac-msg {
+    max-width: 85%;
+    padding: 12px 18px;
+    border-radius: 18px;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    position: relative;
+    animation: msgPop 0.3s ease-out;
+}
+
+.ac-msg-user {
+    align-self: flex-end;
+    background: var(--ac-amber-main);
+    color: #3E2723;
+    border-bottom-right-radius: 4px;
+    font-weight: 500;
+    box-shadow: 0 4px 12px rgba(255, 183, 77, 0.4);
+}
+
+.ac-msg-assistant {
+    align-self: flex-start;
+    background: white;
+    color: var(--ac-text);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    border-bottom-left-radius: 4px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+}
+
+/* 
+   3. INPUT ISLAND (Fixed Flex Item)
+*/
+.ac-input-area {
+    flex: 0 0 auto;
+    padding: 20px 20px 30px 20px;
+    /* Extra bottom pad for iOS home homebar */
+    background: white;
+    /* Solid background to ensure it covers content behind */
+    border-top: 1px solid rgba(0, 0, 0, 0.04);
+    z-index: 30;
+}
+
+.ac-input-wrapper {
+    display: flex;
+    gap: 10px;
+    align-items: flex-end;
+    background: #F5F7F8;
+    padding: 10px;
+    border-radius: 24px;
+    transition: all 0.2s;
+}
+
+.ac-input-wrapper:focus-within {
+    background: white;
+    box-shadow:
+        0 4px 20px rgba(0, 0, 0, 0.08),
+        0 0 0 2px var(--ac-amber-main) inset;
+}
+
+.ac-input {
+    flex: 1;
+    border: none;
+    background: transparent;
+    padding: 10px;
+    font-size: 1rem;
+    max-height: 100px;
+    resize: none;
+    font-family: inherit;
+    color: var(--ac-text);
+}
+
+.ac-input:focus {
+    outline: none;
+}
+
+.ac-send-btn {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--ac-amber-main);
+    color: #3E2723;
+    border: none;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.ac-send-btn:active {
+    transform: scale(0.95);
+}
+
+/* Animations */
+@keyframes slideUp {
+    from {
+        transform: translateY(100%);
+    }
+
+    to {
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes msgPop {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

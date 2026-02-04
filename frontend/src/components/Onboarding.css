@@ -1,0 +1,530 @@
+/* Onboarding Wizard - Premium Clinical Design */
+
+.onboarding-overlay {
+    position: fixed;
+    inset: 0;
+    background: linear-gradient(135deg, #E8F5E9 0%, #F0F7FF 50%, #F3F3FA 100%);
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 20px;
+    z-index: 10000;
+    animation: fadeIn 0.5s ease-out;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.onboarding-container {
+    background: white;
+    border-radius: 44px;
+    width: 100%;
+    max-width: 560px;
+    max-height: fit-content;
+    padding: 3rem 2.5rem 2rem;
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    position: relative;
+    animation: slideUp 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+    margin: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(40px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Progress Bar */
+.onboarding-progress {
+    margin-bottom: 2.5rem;
+}
+
+.progress-bar {
+    height: 6px;
+    background: #F0F0F5;
+    border-radius: 3px;
+    overflow: hidden;
+    margin-bottom: 8px;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #8EB8A1 0%, #66A087 100%);
+    border-radius: 3px;
+    transition: width 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.progress-label {
+    text-align: right;
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: #90A4AE;
+    letter-spacing: 0.5px;
+}
+
+/* Step Container */
+.step {
+    opacity: 0;
+    transform: translateX(30px);
+    animation: stepIn 0.5s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+}
+
+@keyframes stepIn {
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.step-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.step-icon {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+    display: inline-block;
+    animation: bounce 1s ease infinite;
+}
+
+@keyframes bounce {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+.step-header h1 {
+    font-size: clamp(1.6rem, 5vw, 2rem);
+    font-weight: 800;
+    color: #0D47A1;
+    margin: 0 0 0.5rem 0;
+    letter-spacing: -0.5px;
+}
+
+.step-subtitle {
+    font-size: 0.95rem;
+    color: #607D8B;
+    margin: 0;
+    font-weight: 500;
+}
+
+.question {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #2C3E50;
+    margin: 0 0 1.5rem 0;
+    text-align: center;
+}
+
+.step-note {
+    text-align: center;
+    font-size: 0.85rem;
+    color: #90A4AE;
+    margin-top: 1.5rem;
+    font-style: italic;
+}
+
+/* Step Body */
+.step-body {
+    margin-bottom: 2rem;
+}
+
+/* Language Grid (Step 1) */
+.language-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.lang-card {
+    background: #FDFDFD;
+    border: 2px solid #E0E0E0;
+    border-radius: 24px;
+    padding: 2rem 1rem;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.lang-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
+    border-color: #8EB8A1;
+}
+
+.lang-card.selected {
+    background: #E8F5E9;
+    border-color: #66A087;
+    border-width: 3px;
+    box-shadow: 0 8px 20px rgba(142, 184, 161, 0.25);
+}
+
+.lang-flag {
+    font-size: 3.5rem;
+}
+
+.lang-name {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #2C3E50;
+}
+
+/* Form Group (Step 2) */
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: #546E7A;
+    margin-bottom: 0.5rem;
+}
+
+.onboarding-input {
+    width: 100%;
+    padding: 1rem 1.25rem;
+    border: 2px solid #E0E0E0;
+    border-radius: 16px;
+    font-size: 1rem;
+    font-family: inherit;
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+}
+
+.onboarding-input:focus {
+    outline: none;
+    border-color: #8EB8A1;
+    box-shadow: 0 0 0 4px rgba(142, 184, 161, 0.1);
+}
+
+/* Role Grid */
+.role-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+}
+
+.role-btn {
+    background: #FDFDFD;
+    border: 2px solid #E0E0E0;
+    border-radius: 14px;
+    padding: 0.85rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #546E7A;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-family: inherit;
+}
+
+.role-btn:hover {
+    border-color: #8EB8A1;
+    background: #F5FAF7;
+}
+
+.role-btn.selected {
+    background: #E8F5E9;
+    border-color: #66A087;
+    color: #1B5E20;
+    font-weight: 700;
+}
+
+/* Options List (Steps 3, 5) */
+.options-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.option-card {
+    background: #FDFDFD;
+    border: 2px solid #E0E0E0;
+    border-radius: 16px;
+    padding: 1.25rem 1.5rem;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+    text-align: left;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.option-card:hover {
+    border-color: #8EB8A1;
+    background: #F5FAF7;
+    transform: translateX(4px);
+}
+
+.option-card.selected {
+    background: #E8F5E9;
+    border-color: #66A087;
+    border-width: 3px;
+    box-shadow: 0 4px 12px rgba(142, 184, 161, 0.2);
+}
+
+.option-label {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #2C3E50;
+}
+
+.option-card.detailed {
+    flex-direction: row;
+    align-items: center;
+}
+
+.option-icon {
+    font-size: 2.5rem;
+    flex-shrink: 0;
+}
+
+.option-text {
+    flex: 1;
+}
+
+.option-desc {
+    font-size: 0.85rem;
+    color: #607D8B;
+    margin-top: 0.25rem;
+}
+
+/* Options Grid (Step 4) */
+.options-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+}
+
+.icon-card {
+    background: #FDFDFD;
+    border: 2px solid #E0E0E0;
+    border-radius: 20px;
+    padding: 1.5rem 1rem;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.icon-card:hover {
+    transform: translateY(-4px);
+    border-color: #8EB8A1;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+.icon-card.selected {
+    background: #E8F5E9;
+    border-color: #66A087;
+    border-width: 3px;
+    box-shadow: 0 6px 16px rgba(142, 184, 161, 0.25);
+}
+
+.icon-card-icon {
+    font-size: 2.5rem;
+}
+
+.icon-card-label {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #2C3E50;
+    text-align: center;
+}
+
+/* Navigation */
+.onboarding-navigation {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.btn-onboarding {
+    flex: 1;
+    padding: 1rem 1.5rem;
+    border-radius: 18px;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+    border: none;
+    font-family: inherit;
+}
+
+.btn-back {
+    background: #FDFDFD;
+    color: #607D8B;
+    border: 2px solid #E0E0E0;
+}
+
+.btn-back:hover {
+    background: #F5F5F5;
+    border-color: #90A4AE;
+    transform: translateX(-2px);
+}
+
+.btn-continue {
+    background: linear-gradient(135deg, #8EB8A1 0%, #66A087 100%);
+    color: white;
+    border: none;
+    box-shadow: 0 4px 12px rgba(142, 184, 161, 0.3);
+}
+
+.btn-continue:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(142, 184, 161, 0.4);
+}
+
+.btn-continue:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* Mobile Responsive */
+@media (max-width: 600px) {
+    .onboarding-overlay {
+        padding: 10px;
+    }
+
+    .onboarding-container {
+        padding: 1.5rem 1.25rem 1.25rem;
+        border-radius: 24px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+
+    .step-icon {
+        font-size: 2.5rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .step-header {
+        margin-bottom: 1.5rem;
+    }
+
+    .step-header h1 {
+        font-size: 1.4rem;
+        margin-bottom: 0.25rem;
+    }
+
+    .step-subtitle {
+        font-size: 0.85rem;
+    }
+
+    .question {
+        font-size: 1rem;
+        margin-bottom: 1.25rem;
+    }
+
+    .step-body {
+        margin-bottom: 1.5rem;
+    }
+
+    .language-grid,
+    .options-grid {
+        grid-template-columns: 1fr;
+        gap: 0.75rem;
+    }
+
+    .lang-card {
+        padding: 1.5rem 1rem;
+    }
+
+    .lang-flag {
+        font-size: 2.5rem;
+    }
+
+    .icon-card {
+        padding: 1.25rem 0.85rem;
+    }
+
+    .icon-card-icon {
+        font-size: 2rem;
+    }
+
+    .icon-card-label {
+        font-size: 0.85rem;
+    }
+
+    .option-card {
+        padding: 1rem 1.25rem;
+    }
+
+    .option-icon {
+        font-size: 2rem;
+    }
+
+    .option-label {
+        font-size: 0.95rem;
+    }
+
+    .option-desc {
+        font-size: 0.8rem;
+    }
+
+    .role-grid {
+        grid-template-columns: 1fr;
+        gap: 0.6rem;
+    }
+
+    .role-btn {
+        padding: 0.75rem;
+        font-size: 0.85rem;
+    }
+
+    .onboarding-navigation {
+        flex-direction: column-reverse;
+        gap: 0.75rem;
+        margin-top: 1.5rem;
+    }
+
+    .btn-onboarding {
+        width: 100%;
+        padding: 0.85rem 1.25rem;
+        font-size: 0.95rem;
+    }
+
+    .onboarding-progress {
+        margin-bottom: 1.5rem;
+    }
+
+    .form-group {
+        margin-bottom: 1.25rem;
+    }
+
+    .onboarding-input {
+        padding: 0.85rem 1rem;
+        font-size: 0.95rem;
+    }
+}
