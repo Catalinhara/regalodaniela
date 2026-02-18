@@ -602,6 +602,8 @@
         padding: 1.5rem 1.2rem;
         border-radius: 32px;
         max-width: 95%;
+        max-height: 90vh;
+        overflow-y: auto;
     }
 
     .birthday-emoji {
@@ -647,6 +649,49 @@
         right: -10px;
     }
 }
+
+/* ==========================================
+   EXTRA SMALL (iPhone 13 Pro: 390px)
+   ========================================== */
+@media (max-width: 390px) {
+    .birthday-card {
+        padding: 1.2rem 1rem;
+    }
+
+    .birthday-title {
+        font-size: 1.8rem;
+    }
+
+    .birthday-message {
+        font-size: 0.85rem;
+        padding: 14px;
+    }
+
+    .birthday-signature {
+        font-size: 0.8rem;
+    }
+}
+
+/* ==========================================
+   LANDSCAPE MOBILE
+   ========================================== */
+@media (max-height: 500px) and (orientation: landscape) {
+    .birthday-container {
+        align-items: flex-start;
+        padding: 20px;
+        overflow-y: auto;
+    }
+
+    .birthday-card {
+        margin: 20px auto;
+        max-height: none;
+    }
+
+    .balloon-decoration {
+        display: none;
+    }
+}
+
 
 
 /* GIFT BOX ANIMATION (OPTIONAL EXTRA) */

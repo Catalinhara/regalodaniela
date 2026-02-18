@@ -240,6 +240,9 @@
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
+    overflow-y: auto;
+    /* Enable scrolling */
+    -webkit-overflow-scrolling: touch;
 }
 
 .colleagues-grid-v2 {
@@ -492,6 +495,7 @@
     justify-content: space-between;
     align-items: center;
     margin-bottom: clamp(15px, 4vw, 25px);
+    width: 100%;
 }
 
 .modal-header-v2 h2 {
@@ -525,6 +529,7 @@
 .premium-form-grid {
     display: grid;
     gap: clamp(12px, 3vw, 20px);
+    width: 100%;
 }
 
 .field-label {
@@ -585,10 +590,9 @@
     background: white;
     border-radius: 32px;
     padding: 2.5rem 1.5rem 1.5rem;
-    width: 600px;
-    max-width: 90vw;
+    width: 100%;
+    max-width: 500px;
     max-height: 85vh;
-    /* Standardized Constraint */
     position: relative;
     text-align: center;
     box-sizing: border-box;
@@ -701,6 +705,7 @@ body.modal-open {
     flex-direction: column;
     align-items: center;
     border: 1px solid rgba(160, 160, 208, 0.1);
+    width: 100%;
 }
 
 .avatar-preview-v2 {
@@ -831,4 +836,75 @@ body.modal-open {
     font-style: italic;
     text-align: center;
     padding: 20px 0;
+}
+
+/* ==========================================
+   EXTRA SMALL SCREENS (iPhone 13 Pro: 390px)
+   Enhanced fixes for very small mobile devices
+   ========================================== */
+@media (max-width: 480px) {
+    .premium-modal-card {
+        max-height: calc(100vh - 20px);
+        padding-bottom: max(env(safe-area-inset-bottom), 20px);
+    }
+
+    .premium-modal-scroll {
+        max-height: calc(100vh - 200px);
+        padding-bottom: 10px;
+    }
+
+    .colleagues-container .btn-premium-submit {
+        position: sticky;
+        bottom: 0;
+        margin-top: 16px;
+        box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.08), 0 4px 16px rgba(74, 20, 140, 0.25);
+        z-index: 10;
+        width: 100%;
+    }
+
+    .input-soft {
+        height: 44px;
+        font-size: 0.95rem;
+        padding: 10px 14px;
+    }
+
+    textarea.input-soft {
+        min-height: 70px !important;
+    }
+
+    .premium-form-grid {
+        gap: 14px;
+    }
+
+    .field-label {
+        font-size: 0.8rem;
+        margin-bottom: 6px;
+    }
+
+    .modal-header-v2 h2 {
+        font-size: 1.15rem;
+    }
+
+    .colleagues-container .detail-stage {
+        max-height: calc(100vh - 20px);
+    }
+
+    .history-scroll {
+        max-height: 200px;
+    }
+
+    .detail-actions {
+        position: sticky;
+        bottom: 0;
+        background: white;
+        padding: 16px 0 8px 0;
+        margin-top: 20px;
+        border-top: 1px solid rgba(0, 0, 0, 0.06);
+        box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.04);
+    }
+
+    .colleagues-container .btn-pill {
+        height: 46px;
+        font-size: 0.85rem;
+    }
 }

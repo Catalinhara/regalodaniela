@@ -229,97 +229,99 @@ export const PatientList: React.FC<Props> = ({ onCheckIn, onAnalyze, onBack }) =
                             <button className="btn-close-v2" onClick={() => setModalOpen(false)}>×</button>
                         </div>
 
-                        <div className="avatar-stage">
-                            <div className="avatar-preview-v2">
-                                {renderAvatarPreview()}
-                            </div>
-                            <div className="selector-controls">
-                                <button
-                                    className={`control-pill ${avatarSelection === 'emoji' ? 'active' : ''}`}
-                                    onClick={() => setAvatarSelection('emoji')}
-                                >{t('patients.avatar_emoji')}</button>
-                                <button
-                                    className={`control-pill ${avatarSelection === 'photo' ? 'active' : ''}`}
-                                    onClick={() => setAvatarSelection('photo')}
-                                >{t('patients.avatar_photo')}</button>
-                                <button
-                                    className={`control-pill ${avatarSelection === 'initials' ? 'active' : ''}`}
-                                    onClick={() => setAvatarSelection('initials')}
-                                >{t('patients.avatar_initials')}</button>
+                        <div className="premium-modal-scroll">
+                            <div className="avatar-stage">
+                                <div className="avatar-preview-v2">
+                                    {renderAvatarPreview()}
+                                </div>
+                                <div className="selector-controls">
+                                    <button
+                                        className={`control-pill ${avatarSelection === 'emoji' ? 'active' : ''}`}
+                                        onClick={() => setAvatarSelection('emoji')}
+                                    >{t('patients.avatar_emoji')}</button>
+                                    <button
+                                        className={`control-pill ${avatarSelection === 'photo' ? 'active' : ''}`}
+                                        onClick={() => setAvatarSelection('photo')}
+                                    >{t('patients.avatar_photo')}</button>
+                                    <button
+                                        className={`control-pill ${avatarSelection === 'initials' ? 'active' : ''}`}
+                                        onClick={() => setAvatarSelection('initials')}
+                                    >{t('patients.avatar_initials')}</button>
+                                </div>
+
+                                <div className="choice-container">
+                                    {avatarSelection === 'emoji' && (
+                                        <div className="emoji-grid-v2">
+                                            {EMOJI_OPTIONS.map(emoji => (
+                                                <span
+                                                    key={emoji}
+                                                    className={`emoji-item-v2 ${formData.avatar_url === emoji ? 'active' : ''}`}
+                                                    onClick={() => setFormData({ ...formData, avatar_url: emoji })}
+                                                >
+                                                    {emoji}
+                                                </span>
+                                            ))}
+                                        </div>
+                                    )}
+                                    {avatarSelection === 'photo' && (
+                                        <input
+                                            className="input-soft"
+                                            placeholder={t('patients.paste_url')}
+                                            value={formData.avatar_type === 'photo' ? formData.avatar_url : ''}
+                                            onChange={e => setFormData({ ...formData, avatar_url: e.target.value, avatar_type: 'photo' })}
+                                        />
+                                    )}
+                                </div>
                             </div>
 
-                            <div className="choice-container">
-                                {avatarSelection === 'emoji' && (
-                                    <div className="emoji-grid-v2">
-                                        {EMOJI_OPTIONS.map(emoji => (
-                                            <span
-                                                key={emoji}
-                                                className={`emoji-item-v2 ${formData.avatar_url === emoji ? 'active' : ''}`}
-                                                onClick={() => setFormData({ ...formData, avatar_url: emoji })}
-                                            >
-                                                {emoji}
-                                            </span>
-                                        ))}
+                            <div className="premium-form-grid">
+                                <div>
+                                    <label className="field-label">{t('patients.alias_label')}</label>
+                                    <input
+                                        className="input-soft"
+                                        placeholder={t('patients.alias_placeholder')}
+                                        value={formData.alias}
+                                        onChange={e => setFormData({ ...formData, alias: e.target.value })}
+                                    />
+                                </div>
+
+                                <div className="dual-columns">
+                                    <div>
+                                        <label className="field-label">{t('patients.age_label')}</label>
+                                        <input
+                                            type="number"
+                                            className="input-soft"
+                                            placeholder={t('patients.optional_placeholder')}
+                                            value={formData.age}
+                                            onChange={e => setFormData({ ...formData, age: e.target.value })}
+                                        />
                                     </div>
-                                )}
-                                {avatarSelection === 'photo' && (
-                                    <input
-                                        className="input-soft"
-                                        placeholder={t('patients.paste_url')}
-                                        value={formData.avatar_type === 'photo' ? formData.avatar_url : ''}
-                                        onChange={e => setFormData({ ...formData, avatar_url: e.target.value, avatar_type: 'photo' })}
-                                    />
-                                )}
-                            </div>
-                        </div>
+                                    <div>
+                                        <label className="field-label">{t('patients.start_date_label')}</label>
+                                        <input
+                                            type="date"
+                                            className="input-soft"
+                                            value={formData.therapy_start_date}
+                                            onChange={e => setFormData({ ...formData, therapy_start_date: e.target.value })}
+                                        />
+                                    </div>
+                                </div>
 
-                        <div className="premium-form-grid">
-                            <div>
-                                <label className="field-label">{t('patients.alias_label')}</label>
-                                <input
-                                    className="input-soft"
-                                    placeholder={t('patients.alias_placeholder')}
-                                    value={formData.alias}
-                                    onChange={e => setFormData({ ...formData, alias: e.target.value })}
-                                />
-                            </div>
-
-                            <div className="dual-columns">
                                 <div>
-                                    <label className="field-label">{t('patients.age_label')}</label>
-                                    <input
-                                        type="number"
+                                    <label className="field-label">{t('patients.description_label')}</label>
+                                    <textarea
                                         className="input-soft"
-                                        placeholder={t('patients.optional_placeholder')}
-                                        value={formData.age}
-                                        onChange={e => setFormData({ ...formData, age: e.target.value })}
+                                        placeholder={t('patients.description_placeholder')}
+                                        style={{ minHeight: '80px' }}
+                                        value={formData.description}
+                                        onChange={e => setFormData({ ...formData, description: e.target.value })}
                                     />
                                 </div>
-                                <div>
-                                    <label className="field-label">{t('patients.start_date_label')}</label>
-                                    <input
-                                        type="date"
-                                        className="input-soft"
-                                        value={formData.therapy_start_date}
-                                        onChange={e => setFormData({ ...formData, therapy_start_date: e.target.value })}
-                                    />
-                                </div>
-                            </div>
 
-                            <div>
-                                <label className="field-label">{t('patients.description_label')}</label>
-                                <textarea
-                                    className="input-soft"
-                                    placeholder={t('patients.description_placeholder')}
-                                    style={{ minHeight: '80px' }}
-                                    value={formData.description}
-                                    onChange={e => setFormData({ ...formData, description: e.target.value })}
-                                />
+                                <button className="btn-premium-submit" onClick={handleAdd}>
+                                    {t('patients.add_button')}
+                                </button>
                             </div>
-
-                            <button className="btn-premium-submit" onClick={handleAdd}>
-                                {t('patients.add_button')}
-                            </button>
                         </div>
                     </div>
                 </div>

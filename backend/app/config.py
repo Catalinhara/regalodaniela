@@ -23,7 +23,13 @@ class Settings(BaseSettings):
     GOOGLE_CLIENT_ID: Optional[str] = None
     
     # CORS
-    CORS_ORIGINS: list[str] = ["http://localhost:5173", "http://localhost:3000", "http://127.0.0.1:5173", "http://127.0.0.1:3000"]
+    CORS_ORIGINS: list[str] = [
+        "http://localhost:5173", 
+        "http://localhost:3000", 
+        "http://127.0.0.1:5173", 
+        "http://127.0.0.1:3000",
+        "http://192.168.1.195:5173"
+    ]
     
     # Rate Limiting
     RATE_LIMIT_PER_MINUTE: int = 5

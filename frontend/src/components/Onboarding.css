@@ -8,10 +8,13 @@
     align-items: flex-start;
     justify-content: center;
     padding: 20px;
+    padding-top: max(20px, env(safe-area-inset-top));
+    padding-bottom: max(20px, env(safe-area-inset-bottom));
     z-index: 10000;
     animation: fadeIn 0.5s ease-out;
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
+    box-sizing: border-box;
 }
 
 @keyframes fadeIn {
@@ -525,6 +528,158 @@
 
     .onboarding-input {
         padding: 0.85rem 1rem;
+        font-size: 16px;
+        /* Prevent iOS zoom */
+        -webkit-appearance: none;
+    }
+}
+
+/* ==========================================
+   EXTRA SMALL (iPhone 13 Pro: 390px)
+   ========================================== */
+@media (max-width: 390px) {
+    .onboarding-overlay {
+        padding: 10px;
+        padding-top: max(12px, env(safe-area-inset-top));
+        padding-bottom: max(12px, env(safe-area-inset-bottom));
+    }
+
+    .onboarding-container {
+        padding: 1.25rem 1rem 1rem;
+        border-radius: 20px;
+        margin-top: 6px;
+        margin-bottom: 6px;
+    }
+
+    .step-icon {
+        font-size: 2rem;
+        margin-bottom: 0.4rem;
+    }
+
+    .step-header h1 {
+        font-size: 1.25rem;
+    }
+
+    .step-header {
+        margin-bottom: 1rem;
+    }
+
+    .question {
         font-size: 0.95rem;
+        margin-bottom: 1rem;
+    }
+
+    .lang-card {
+        padding: 1rem 0.75rem;
+        flex-direction: row;
+        justify-content: center;
+        gap: 0.75rem;
+    }
+
+    .lang-flag {
+        font-size: 2rem;
+    }
+
+    .lang-name {
+        font-size: 1rem;
+    }
+
+    .option-card {
+        padding: 0.85rem 1rem;
+    }
+
+    .option-icon {
+        font-size: 1.75rem;
+    }
+
+    .icon-card {
+        padding: 1rem 0.75rem;
+    }
+
+    .icon-card-icon {
+        font-size: 1.75rem;
+    }
+
+    .btn-onboarding {
+        padding: 0.8rem 1rem;
+        font-size: 0.9rem;
+    }
+
+    .onboarding-progress {
+        margin-bottom: 1rem;
+    }
+}
+
+/* ==========================================
+   LANDSCAPE MOBILE
+   ========================================== */
+@media (max-height: 600px) and (orientation: landscape) {
+    .onboarding-overlay {
+        padding: 8px 16px;
+        padding-left: max(16px, env(safe-area-inset-left));
+        padding-right: max(16px, env(safe-area-inset-right));
+    }
+
+    .onboarding-container {
+        padding: 1rem 1.5rem;
+        border-radius: 20px;
+        margin-top: 4px;
+        margin-bottom: 4px;
+    }
+
+    .step-icon {
+        font-size: 1.75rem;
+        margin-bottom: 0.25rem;
+    }
+
+    .step-header {
+        margin-bottom: 0.75rem;
+    }
+
+    .step-header h1 {
+        font-size: 1.2rem;
+    }
+
+    .step-subtitle {
+        font-size: 0.8rem;
+    }
+
+    .question {
+        font-size: 0.9rem;
+        margin-bottom: 0.75rem;
+    }
+
+    .step-body {
+        margin-bottom: 1rem;
+    }
+
+    .onboarding-progress {
+        margin-bottom: 1rem;
+    }
+
+    .onboarding-navigation {
+        flex-direction: row;
+        margin-top: 1rem;
+    }
+
+    .btn-onboarding {
+        padding: 0.7rem 1rem;
+        font-size: 0.9rem;
+    }
+
+    .language-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .lang-card {
+        padding: 0.75rem;
+    }
+
+    .options-list {
+        gap: 0.5rem;
+    }
+
+    .option-card {
+        padding: 0.75rem 1rem;
     }
 }

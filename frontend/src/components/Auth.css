@@ -1,6 +1,6 @@
 /* ==========================================
    CLARAMENTE - PREMIUM AUTH DESIGN
-   Matching Patients Module Aesthetic
+   Mobile-First, iPhone 13 Pro Optimized
    ========================================== */
 
 :root {
@@ -31,6 +31,8 @@
    ========================================== */
 .auth-container {
     min-height: 100vh;
+    min-height: 100dvh;
+    /* Dynamic viewport height for mobile */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -39,9 +41,12 @@
         radial-gradient(at 0% 0%, var(--primary-light) 0, transparent 50%),
         radial-gradient(at 100% 100%, var(--secondary-light) 0, transparent 50%);
     padding: 20px;
+    padding-bottom: max(20px, env(safe-area-inset-bottom));
+    padding-top: max(20px, env(safe-area-inset-top));
     position: relative;
-    overflow: hidden;
+    overflow-y: auto;
     font-family: 'Instrument Sans', 'Inter', -apple-system, sans-serif;
+    box-sizing: border-box;
 }
 
 /* FLOATING BLOBS */
@@ -109,13 +114,14 @@
     -webkit-backdrop-filter: var(--blur-glass);
     border-radius: 32px;
     box-shadow: var(--shadow-lg);
-    padding: clamp(35px, 8vw, 60px) clamp(30px, 6vw, 50px);
+    padding: clamp(28px, 6vw, 60px) clamp(24px, 5vw, 50px);
     width: 100%;
     max-width: 450px;
     position: relative;
     z-index: 10;
     border: 1px solid rgba(255, 255, 255, 0.2);
     animation: fadeInUp 0.8s var(--ease-out);
+    box-sizing: border-box;
 }
 
 @keyframes fadeInUp {
@@ -134,18 +140,18 @@
    TYPOGRAPHY
    ========================================== */
 .auth-title {
-    font-size: clamp(1.75rem, 5vw, 2.25rem);
+    font-size: clamp(1.5rem, 5vw, 2.25rem);
     font-weight: 750;
     color: var(--text-main);
-    margin: 0 0 8px 0;
+    margin: 0 0 6px 0;
     text-align: center;
     letter-spacing: -0.8px;
 }
 
 .auth-subtitle {
-    font-size: clamp(0.85rem, 3vw, 1rem);
+    font-size: clamp(0.82rem, 3vw, 1rem);
     color: var(--text-muted);
-    margin: 0 0 35px 0;
+    margin: 0 0 clamp(20px, 4vw, 35px) 0;
     text-align: center;
     font-weight: 500;
 }
@@ -156,10 +162,10 @@
 .auth-error {
     background: rgba(229, 115, 115, 0.1);
     color: #C62828;
-    padding: 14px 18px;
+    padding: 12px 16px;
     border-radius: 16px;
-    margin-bottom: 25px;
-    font-size: 0.9rem;
+    margin-bottom: 20px;
+    font-size: 0.88rem;
     border-left: 4px solid var(--error);
     font-weight: 500;
     animation: shake 0.4s ease-in-out;
@@ -187,13 +193,13 @@
 .auth-form {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: clamp(14px, 3vw, 20px);
 }
 
 .form-group {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 7px;
 }
 
 .form-group label {
@@ -209,12 +215,15 @@
     box-sizing: border-box;
     background: var(--secondary-light);
     border: 1px solid transparent;
-    padding: 14px 16px;
+    padding: 13px 16px;
     border-radius: 16px;
-    font-size: 1rem;
+    font-size: 16px;
+    /* Always 16px to prevent iOS zoom */
     color: var(--text-main);
     transition: var(--transition);
     font-family: inherit;
+    -webkit-appearance: none;
+    appearance: none;
 }
 
 .form-group input::placeholder {
@@ -241,7 +250,7 @@
    ========================================== */
 .auth-button {
     width: 100%;
-    height: 56px;
+    height: clamp(48px, 7vw, 56px);
     background: var(--primary);
     color: white;
     border: none;
@@ -250,9 +259,11 @@
     font-weight: 700;
     cursor: pointer;
     box-shadow: var(--shadow-md);
-    margin-top: 10px;
+    margin-top: 8px;
     transition: var(--transition);
     font-family: inherit;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
 }
 
 .auth-button:hover:not(:disabled) {
@@ -275,8 +286,8 @@
    FOOTER
    ========================================== */
 .auth-footer {
-    margin-top: 40px;
-    margin-bottom: 20px;
+    margin-top: clamp(20px, 4vw, 40px);
+    margin-bottom: 0;
     text-align: center;
     font-size: 0.9rem;
     color: var(--text-soft);
@@ -299,6 +310,7 @@
     font-size: inherit;
     font-family: inherit;
     transition: var(--transition);
+    -webkit-tap-highlight-color: transparent;
 }
 
 .auth-link:hover {
@@ -311,6 +323,7 @@
    ========================================== */
 .loading-screen {
     min-height: 100vh;
+    min-height: 100dvh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -321,27 +334,13 @@
 }
 
 /* ==========================================
-   RESPONSIVE ADJUSTMENTS
-   ========================================== */
-@media (max-width: 480px) {
-    .auth-card {
-        border-radius: 24px;
-    }
-
-    .form-group input {
-        font-size: 16px;
-        /* Prevents zoom on iOS */
-    }
-}
-
-/* ==========================================
    DIVIDER WITH OR
    ========================================== */
 .divider-container {
     display: flex;
     align-items: center;
     gap: 16px;
-    margin: 28px 0;
+    margin: clamp(18px, 4vw, 28px) 0;
 }
 
 .divider-line {
@@ -360,20 +359,18 @@
     letter-spacing: 1px;
 }
 
-
 /* ==========================================
-   CUSTOM GOOGLE LOGIN BUTTON
+   GOOGLE LOGIN CONTAINER
    ========================================== */
 .google-login-container {
     margin-top: 8px;
-    margin-bottom: 20px;
+    margin-bottom: clamp(12px, 3vw, 20px);
     display: flex;
     justify-content: center;
     position: relative;
     z-index: 5;
 }
 
-/* Override Google button default styles - keeping it safe */
 .google-login-container>div {
     display: flex !important;
     justify-content: center !important;
@@ -384,10 +381,10 @@
     margin: 0 auto !important;
 }
 
-/* Custom Google button styling when using custom render */
+/* Custom Google button */
 .google-button-custom {
     width: 100%;
-    height: 56px;
+    height: clamp(48px, 7vw, 56px);
     background: white;
     border: 1.5px solid rgba(142, 184, 161, 0.2);
     border-radius: 18px;
@@ -404,6 +401,8 @@
     box-shadow: var(--shadow-sm);
     position: relative;
     overflow: hidden;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
 }
 
 .google-button-custom::before {
@@ -446,4 +445,91 @@
     opacity: 0.5;
     cursor: not-allowed;
     transform: none;
+}
+
+/* ==========================================
+   RESPONSIVE - SMALL PHONES (< 390px)
+   ========================================== */
+@media (max-width: 390px) {
+    .auth-container {
+        padding: 12px;
+        align-items: flex-start;
+        padding-top: max(24px, env(safe-area-inset-top));
+    }
+
+    .auth-card {
+        border-radius: 24px;
+        padding: 24px 18px;
+        margin: auto 0;
+    }
+
+    .auth-title {
+        font-size: 1.4rem;
+    }
+
+    .auth-subtitle {
+        margin-bottom: 16px;
+    }
+
+    .auth-form {
+        gap: 12px;
+    }
+
+    .divider-container {
+        margin: 14px 0;
+    }
+
+    .auth-footer {
+        margin-top: 16px;
+    }
+}
+
+/* ==========================================
+   RESPONSIVE - LANDSCAPE MOBILE
+   ========================================== */
+@media (max-height: 600px) and (orientation: landscape) {
+    .auth-container {
+        align-items: flex-start;
+        padding: 12px 20px;
+    }
+
+    .auth-card {
+        padding: 20px 28px;
+        margin: 0 auto;
+    }
+
+    .auth-title {
+        font-size: 1.3rem;
+        margin-bottom: 4px;
+    }
+
+    .auth-subtitle {
+        margin-bottom: 14px;
+        font-size: 0.8rem;
+    }
+
+    .auth-form {
+        gap: 10px;
+    }
+
+    .form-group input {
+        padding: 10px 14px;
+    }
+
+    .auth-button {
+        height: 44px;
+        margin-top: 4px;
+    }
+
+    .divider-container {
+        margin: 10px 0;
+    }
+
+    .google-login-container {
+        margin-bottom: 8px;
+    }
+
+    .auth-footer {
+        margin-top: 12px;
+    }
 }

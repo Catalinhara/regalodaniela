@@ -6,8 +6,8 @@ interface OnboardingData {
     fullName: string;
     professionalRole: string;
     yearsExperience: number;
-    primaryStressor: string;
-    copingStyle: string;
+    stressors: string[];
+    copingStyles: string[];
 }
 
 interface OnboardingProps {
@@ -21,8 +21,8 @@ const Onboarding = ({ onComplete }: OnboardingProps) => {
         fullName: '',
         professionalRole: '',
         yearsExperience: 0,
-        primaryStressor: '',
-        copingStyle: ''
+        stressors: [],
+        copingStyles: []
     });
 
     const totalSteps = 5;
@@ -58,8 +58,8 @@ const Onboarding = ({ onComplete }: OnboardingProps) => {
             },
             step4: {
                 title: 'What weighs on you?',
-                subtitle: 'Identifying your challenges helps us provide better support',
-                question: 'What\'s your primary stressor right now?',
+                subtitle: 'Select up to 3 challenges you are facing',
+                question: 'What are your primary stressors?',
                 options: [
                     { icon: '🔥', label: 'Burnout', value: 'burnout' },
                     { icon: '💼', label: 'Heavy Workload', value: 'workload' },
@@ -71,8 +71,8 @@ const Onboarding = ({ onComplete }: OnboardingProps) => {
             },
             step5: {
                 title: 'Your Support Style',
-                subtitle: 'How do you usually process difficult moments?',
-                question: 'What\'s your natural coping approach?',
+                subtitle: 'Select up to 3 ways you process information',
+                question: 'What are your natural coping approaches?',
                 options: [
                     { icon: '🧠', label: 'Analytical', desc: 'I think through patterns and solutions', value: 'analytical' },
                     { icon: '💭', label: 'Reflective', desc: 'I process emotions and experiences', value: 'reflective' },
@@ -113,8 +113,8 @@ const Onboarding = ({ onComplete }: OnboardingProps) => {
             },
             step4: {
                 title: '¿Qué te pesa?',
-                subtitle: 'Identificar tus desafíos nos ayuda a brindarte mejor apoyo',
-                question: '¿Cuál es tu principal fuente de estrés ahora?',
+                subtitle: 'Selecciona hasta 3 desafíos que enfrentas',
+                question: '¿Cuáles son tus principales fuentes de estrés?',
                 options: [
                     { icon: '🔥', label: 'Agotamiento', value: 'burnout' },
                     { icon: '💼', label: 'Carga de Trabajo', value: 'workload' },
@@ -126,8 +126,8 @@ const Onboarding = ({ onComplete }: OnboardingProps) => {
             },
             step5: {
                 title: 'Tu Estilo de Apoyo',
-                subtitle: '¿Cómo procesas los momentos difíciles?',
-                question: '¿Cuál es tu enfoque natural de afrontamiento?',
+                subtitle: 'Selecciona hasta 3 formas de procesar',
+                question: '¿Cuáles son tus enfoques naturales de afrontamiento?',
                 options: [
                     { icon: '🧠', label: 'Analítico', desc: 'Pienso en patrones y soluciones', value: 'analytical' },
                     { icon: '💭', label: 'Reflexivo', desc: 'Proceso emociones y experiencias', value: 'reflective' },
@@ -143,27 +143,71 @@ const Onboarding = ({ onComplete }: OnboardingProps) => {
 
     const t = content[data.language];
 
-    const handleContinue = () => {
+    const nextStep = () => {
         if (currentStep < totalSteps) {
-            setCurrentStep(currentStep + 1);
+            setCurrentStep(prev => prev + 1);
         } else {
             onComplete(data);
         }
     };
 
-    const handleBack = () => {
+    const prevStep = () => {
         if (currentStep > 1) {
-            setCurrentStep(currentStep - 1);
+            setCurrentStep(prev => prev - 1);
+        }
+    };
+
+    // Auto-advance Logic Helpers
+    const setLanguage = (lang: 'en' | 'es') => {
+        setData({ ...data, language: lang });
+        // Small delay for visual feedback before auto-advance
+        setTimeout(() => {
+            setCurrentStep(2);
+        }, 300);
+    };
+
+    const setRole = (role: string) => {
+        setData({ ...data, professionalRole: role });
+        // No auto-advance here because name might not be filled
+    };
+
+    const setExperience = (years: number) => {
+        setData({ ...data, yearsExperience: years });
+        setTimeout(() => {
+            setCurrentStep(4);
+        }, 300);
+    };
+
+    // Multi-select Logic
+    const toggleStressor = (value: string) => {
+        const current = data.stressors || []; // Safety fallback
+        if (current.includes(value)) {
+            setData({ ...data, stressors: current.filter(v => v !== value) });
+        } else {
+            if (current.length < 3) {
+                setData({ ...data, stressors: [...current, value] });
+            }
+        }
+    };
+
+    const toggleCoping = (value: string) => {
+        const current = data.copingStyles || []; // Safety fallback
+        if (current.includes(value)) {
+            setData({ ...data, copingStyles: current.filter(v => v !== value) });
+        } else {
+            if (current.length < 3) {
+                setData({ ...data, copingStyles: [...current, value] });
+            }
         }
     };
 
     const canContinue = () => {
         switch (currentStep) {
-            case 1: return true; // Language always selected
+            case 1: return true;
             case 2: return data.fullName.trim() !== '' && data.professionalRole !== '';
             case 3: return data.yearsExperience > 0;
-            case 4: return data.primaryStressor !== '';
-            case 5: return data.copingStyle !== '';
+            case 4: return data.stressors.length > 0;
+            case 5: return data.copingStyles.length > 0;
             default: return false;
         }
     };
@@ -198,14 +242,14 @@ const Onboarding = ({ onComplete }: OnboardingProps) => {
                             <div className="language-grid">
                                 <button
                                     className={`lang-card ${data.language === 'en' ? 'selected' : ''}`}
-                                    onClick={() => setData({ ...data, language: 'en' })}
+                                    onClick={() => setLanguage('en')}
                                 >
                                     <div className="lang-flag">🇺🇸</div>
                                     <div className="lang-name">English</div>
                                 </button>
                                 <button
                                     className={`lang-card ${data.language === 'es' ? 'selected' : ''}`}
-                                    onClick={() => setData({ ...data, language: 'es' })}
+                                    onClick={() => setLanguage('es')}
                                 >
                                     <div className="lang-flag">🇪🇸</div>
                                     <div className="lang-name">Español</div>
@@ -244,7 +288,7 @@ const Onboarding = ({ onComplete }: OnboardingProps) => {
                                         <button
                                             key={role}
                                             className={`role-btn ${data.professionalRole === role ? 'selected' : ''}`}
-                                            onClick={() => setData({ ...data, professionalRole: role })}
+                                            onClick={() => setRole(role)}
                                         >
                                             {role}
                                         </button>
@@ -271,7 +315,7 @@ const Onboarding = ({ onComplete }: OnboardingProps) => {
                                     <button
                                         key={range.value}
                                         className={`option-card ${data.yearsExperience === range.value ? 'selected' : ''}`}
-                                        onClick={() => setData({ ...data, yearsExperience: range.value })}
+                                        onClick={() => setExperience(range.value)}
                                     >
                                         <span className="option-label">{range.label}</span>
                                     </button>
@@ -281,7 +325,7 @@ const Onboarding = ({ onComplete }: OnboardingProps) => {
                     </div>
                 )}
 
-                {/* Step 4: Primary Stressor */}
+                {/* Step 4: Primary Stressor (Multi-select) */}
                 {currentStep === 4 && (
                     <div className="step step-4 active">
                         <div className="step-header">
@@ -293,22 +337,26 @@ const Onboarding = ({ onComplete }: OnboardingProps) => {
                         <div className="step-body">
                             <h2 className="question">{t.step4.question}</h2>
                             <div className="options-grid">
-                                {t.step4.options.map((option) => (
-                                    <button
-                                        key={option.value}
-                                        className={`icon-card ${data.primaryStressor === option.value ? 'selected' : ''}`}
-                                        onClick={() => setData({ ...data, primaryStressor: option.value })}
-                                    >
-                                        <div className="icon-card-icon">{option.icon}</div>
-                                        <div className="icon-card-label">{option.label}</div>
-                                    </button>
-                                ))}
+                                {t.step4.options.map((option) => {
+                                    const isSelected = data.stressors.includes(option.value);
+                                    return (
+                                        <button
+                                            key={option.value}
+                                            className={`icon-card ${isSelected ? 'selected' : ''}`}
+                                            onClick={() => toggleStressor(option.value)}
+                                        >
+                                            <div className="icon-card-icon">{option.icon}</div>
+                                            <div className="icon-card-label">{option.label}</div>
+                                            {isSelected && <div className="selection-badge">✓</div>}
+                                        </button>
+                                    );
+                                })}
                             </div>
                         </div>
                     </div>
                 )}
 
-                {/* Step 5: Coping Style */}
+                {/* Step 5: Coping Style (Multi-select) */}
                 {currentStep === 5 && (
                     <div className="step step-5 active">
                         <div className="step-header">
@@ -320,19 +368,23 @@ const Onboarding = ({ onComplete }: OnboardingProps) => {
                         <div className="step-body">
                             <h2 className="question">{t.step5.question}</h2>
                             <div className="options-list">
-                                {t.step5.options.map((option) => (
-                                    <button
-                                        key={option.value}
-                                        className={`option-card detailed ${data.copingStyle === option.value ? 'selected' : ''}`}
-                                        onClick={() => setData({ ...data, copingStyle: option.value })}
-                                    >
-                                        <div className="option-icon">{option.icon}</div>
-                                        <div className="option-text">
-                                            <div className="option-label">{option.label}</div>
-                                            <div className="option-desc">{option.desc}</div>
-                                        </div>
-                                    </button>
-                                ))}
+                                {t.step5.options.map((option) => {
+                                    const isSelected = data.copingStyles.includes(option.value);
+                                    return (
+                                        <button
+                                            key={option.value}
+                                            className={`option-card detailed ${isSelected ? 'selected' : ''}`}
+                                            onClick={() => toggleCoping(option.value)}
+                                        >
+                                            <div className="option-icon">{option.icon}</div>
+                                            <div className="option-text">
+                                                <div className="option-label">{option.label}</div>
+                                                <div className="option-desc">{option.desc}</div>
+                                            </div>
+                                            {isSelected && <div className="selection-badge">✓</div>}
+                                        </button>
+                                    );
+                                })}
                             </div>
                         </div>
                     </div>
@@ -341,13 +393,13 @@ const Onboarding = ({ onComplete }: OnboardingProps) => {
                 {/* Navigation */}
                 <div className="onboarding-navigation">
                     {currentStep > 1 && (
-                        <button className="btn-onboarding btn-back" onClick={handleBack}>
+                        <button className="btn-onboarding btn-back" onClick={prevStep}>
                             ← {t.back}
                         </button>
                     )}
                     <button
                         className="btn-onboarding btn-continue"
-                        onClick={handleContinue}
+                        onClick={nextStep}
                         disabled={!canContinue()}
                     >
                         {currentStep === totalSteps ? t.finish : t.continue} →

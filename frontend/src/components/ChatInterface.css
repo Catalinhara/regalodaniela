@@ -1,6 +1,7 @@
 /* ==========================================
    CLARAMENTE - COMPANION CHAT OVERLAY
    Dedicated Styles for Stability (Blue Theme)
+   Mobile-First & iPhone Optimized
    ========================================== */
 
 :root {
@@ -13,8 +14,6 @@
 
 /* 
    THE MODAL CONTAINER 
-   Positions itself on top of EVERYTHING.
-   Matches AnalysisChat structure for consistency.
 */
 .chat-overlay-fixed {
     position: fixed;
@@ -22,37 +21,34 @@
     z-index: 9999;
     background: rgba(44, 62, 80, 0.2);
     backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
     display: flex;
     justify-content: center;
     align-items: flex-end;
-    /* Sheet style on mobile */
     animation: fadeIn 0.3s ease-out;
 }
 
 @media (min-width: 600px) {
     .chat-overlay-fixed {
         align-items: center;
-        /* Center modal on desktop */
         padding: 40px;
     }
 }
 
 /* 
    THE CHAT SHEET / CARD
-   Strict Flex Column Layout
 */
 .chat-sheet {
     display: flex;
     flex-direction: column;
     width: 100%;
     height: 96%;
-    /* Leave a sliver at top for "sheet" feel */
+    height: 96dvh;
     max-width: 600px;
     background: #FDFDFD;
     border-radius: 20px 20px 0 0;
     box-shadow: 0 -10px 40px rgba(66, 165, 245, 0.15);
     overflow: hidden;
-    /* Contain inner scroll */
     position: relative;
     animation: slideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
@@ -66,14 +62,18 @@
 }
 
 /* 
-   1. HEADER (Fixed Flex Item)
+   1. HEADER
 */
 .cc-header {
-    flex: 0 0 70px;
+    flex: 0 0 auto;
+    min-height: 60px;
+    padding-top: max(8px, env(safe-area-inset-top));
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 20px;
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-bottom: 8px;
     background: var(--cc-glass);
     border-bottom: 1px solid rgba(66, 165, 245, 0.1);
     z-index: 20;
@@ -129,25 +129,24 @@
 }
 
 /* 
-   2. MESSAGES (Scrollable Flex Item)
+   2. MESSAGES
 */
 .cc-messages {
     flex: 1 1 auto;
     overflow-y: auto;
     overflow-x: hidden;
-    padding: 20px;
+    padding: 16px;
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 12px;
     background-image:
         radial-gradient(circle at 50% 50%, #E3F2FD 0%, transparent 60%);
     -webkit-overflow-scrolling: touch;
 }
 
-/* Message Bubbles */
 .cc-msg {
     max-width: 85%;
-    padding: 12px 18px;
+    padding: 10px 14px;
     border-radius: 18px;
     font-size: 0.95rem;
     line-height: 1.5;
@@ -174,28 +173,24 @@
 }
 
 /* 
-   3. INPUT ISLAND (Fixed Flex Item)
+   3. INPUT ISLAND
 */
 .cc-input-area {
     flex: 0 0 auto;
-    padding: 20px 20px 30px 20px;
-    /* Extra bottom pad for iOS home homebar */
+    padding: 12px 16px;
+    padding-bottom: max(16px, env(safe-area-inset-bottom));
     background: white;
-    /* Solid background ensures cover */
     border-top: 1px solid rgba(0, 0, 0, 0.04);
     z-index: 30;
 }
 
 .cc-input-wrapper {
     display: flex;
-    gap: 10px;
+    gap: 8px;
     align-items: center;
-    /* Center alignment for single-line input feel */
-    background: #F1F8E9;
-    /* Slight tint distinction? Or stick to Blue tint */
     background: #F5F7FA;
-    padding: 10px;
-    border-radius: 24px;
+    padding: 8px 12px;
+    border-radius: 20px;
     transition: all 0.2s;
     border: 1px solid rgba(66, 165, 245, 0.1);
 }
@@ -211,8 +206,9 @@
     flex: 1;
     border: none;
     background: transparent;
-    padding: 10px;
-    font-size: 1rem;
+    padding: 8px 0;
+    font-size: 16px;
+    /* Prevent iOS zoom */
     font-family: inherit;
     color: var(--cc-text);
 }
@@ -222,8 +218,8 @@
 }
 
 .cc-send-btn {
-    width: 44px;
-    height: 44px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
     background: var(--cc-blue-main);
     color: white;
@@ -240,6 +236,12 @@
 
 .cc-send-btn:active {
     transform: scale(0.95);
+}
+
+.cc-send-btn:disabled {
+    opacity: 0.5;
+    background: #E0E0E0;
+    box-shadow: none;
 }
 
 /* Animations */
@@ -289,5 +291,49 @@
     100% {
         transform: scale(1);
         opacity: 1;
+    }
+}
+
+/* ==========================================
+   EXTRA SMALL (iPhone 13 Pro: 390px)
+   ========================================== */
+@media (max-width: 390px) {
+    .cc-header {
+        min-height: 50px;
+        padding-left: 12px;
+        padding-right: 12px;
+    }
+
+    .cc-title {
+        font-size: 0.9rem;
+    }
+
+    .cc-subtitle {
+        font-size: 0.7rem;
+    }
+
+    .cc-msg {
+        font-size: 0.85rem;
+        padding: 8px 12px;
+    }
+}
+
+/* ==========================================
+   LANDSCAPE MOBILE
+   ========================================== */
+@media (max-height: 500px) and (orientation: landscape) {
+    .chat-sheet {
+        height: 100dvh;
+        border-radius: 0;
+    }
+
+    .cc-header {
+        padding-top: max(4px, env(safe-area-inset-top));
+        min-height: 40px;
+    }
+
+    .cc-input-area {
+        padding: 8px 16px;
+        padding-bottom: max(8px, env(safe-area-inset-bottom));
     }
 }

@@ -537,15 +537,15 @@
 @media (max-width: 600px) {
     .checkin-viewport {
         align-items: flex-end;
-        /* ALIGN TO BOTTOM */
         padding: 0;
     }
 
     .checkin-glass-card {
         border-radius: 40px 40px 0 0;
-        /* BOTTOM SHEET RADIUS */
         max-width: 100%;
-        padding: 30px 20px 40px;
+        max-height: 98vh;
+        max-height: 98dvh;
+        padding: 20px 20px max(20px, env(safe-area-inset-bottom));
         animation: sheetSlideUp 0.6s cubic-bezier(0.23, 1, 0.32, 1);
     }
 
@@ -559,13 +559,20 @@
         }
     }
 
+    .checkin-content-scroll {
+        max-height: calc(98dvh - 180px);
+        /* Adjust for header and buttons */
+        padding-bottom: 2rem;
+    }
+
     .step-title {
         font-size: 1.3rem;
         margin-bottom: 25px;
     }
 
     .mood-organic-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, 1fr);
+        /* Keep 2 cols unless too narrow */
         gap: 10px;
     }
 
@@ -574,7 +581,7 @@
     }
 
     .intent-organic-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, 1fr);
         gap: 12px;
     }
 
@@ -584,30 +591,114 @@
     }
 
     .intent-icon {
-        font-size: 2.2rem;
+        font-size: 2rem;
     }
 
     .intent-label {
-        font-size: 0.8rem;
+        font-size: 0.75rem;
     }
 
     .premium-textarea {
-        min-height: 90px;
-        font-size: 0.9rem;
-        padding: 16px 18px;
+        min-height: 100px;
+        font-size: 16px;
+        /* Prevent iOS zoom */
+        padding: 14px 16px;
     }
 
     .final-actions-v2 {
         grid-template-columns: 1fr;
         gap: 10px;
+        position: sticky;
+        bottom: 0;
+        background: white;
+        padding-top: 10px;
+        border-top: 1px solid rgba(0, 0, 0, 0.04);
+        margin-top: 10px;
     }
 
     .btn-back-soft {
         order: 2;
-        height: 50px;
+        height: 48px;
     }
 
-    .btn-premium-submit {
+    .btn-premium-submit,
+    .btn-premium-next {
         height: 54px;
+    }
+}
+
+/* ==========================================
+   EXTRA SMALL (iPhone 13 Pro: 390px)
+   ========================================== */
+@media (max-width: 390px) {
+    .checkin-glass-card {
+        padding-top: 16px;
+        border-radius: 32px 32px 0 0;
+    }
+
+    .sheet-handle {
+        margin-bottom: 1rem;
+    }
+
+    .step-title {
+        font-size: 1.15rem;
+        margin-bottom: 20px;
+    }
+
+    .mood-organic-grid {
+        grid-template-columns: 1fr;
+        /* Single column on very small */
+    }
+
+    .intent-organic-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .intent-sphere-btn {
+        min-height: 80px;
+        flex-direction: row;
+        justify-content: flex-start;
+        padding-left: 20px;
+    }
+
+    .intent-icon {
+        font-size: 1.75rem;
+    }
+}
+
+/* ==========================================
+   LANDSCAPE MOBILE
+   ========================================== */
+@media (max-height: 500px) and (orientation: landscape) {
+    .checkin-viewport {
+        align-items: center;
+        padding: 10px;
+    }
+
+    .checkin-glass-card {
+        max-height: 98vh;
+        border-radius: 20px;
+        flex-direction: row;
+        gap: 20px;
+        padding: 20px;
+    }
+
+    .checkin-header-v2 {
+        display: none;
+        /* Hide header details in landscape to save space */
+    }
+
+    .checkin-content-scroll {
+        max-height: 100%;
+        padding-bottom: 0;
+    }
+
+    .final-actions-v2 {
+        position: relative;
+        border: none;
+        background: transparent;
+        margin: 0;
+        width: 150px;
+        flex-shrink: 0;
     }
 }

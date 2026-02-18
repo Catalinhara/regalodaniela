@@ -9,6 +9,7 @@ services:
       - ./backend:/app
     environment:
       - DATABASE_URL=postgresql+asyncpg://user:password@db:5432/companion
+      - GOOGLE_AI_API_KEY=${GOOGLE_AI_API_KEY}
       - OPENROUTER_API_KEY=${OPENROUTER_API_KEY}
       - JWT_SECRET_KEY=${JWT_SECRET_KEY:-dev-secret-key-change-in-production-min-32-chars}
       - JWT_REFRESH_SECRET_KEY=${JWT_REFRESH_SECRET_KEY:-dev-refresh-secret-key-change-in-production-min-32-chars}
@@ -28,7 +29,7 @@ services:
       - ./frontend:/app
       - /app/node_modules
     environment:
-      - VITE_API_URL=http://localhost:8000
+      - VITE_API_URL=http://192.168.1.195:8000
       - VITE_GOOGLE_CLIENT_ID=${VITE_GOOGLE_CLIENT_ID}
     depends_on:
       - backend

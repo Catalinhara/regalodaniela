@@ -179,11 +179,11 @@ body,
   }
 }
 
-/* Mobile Header Adjustment */
-@media (max-width: 600px) {
+@media (max-width: 480px) {
   .app-header {
     height: 60px;
     padding: 0 15px;
+    padding-top: env(safe-area-inset-top, 0);
   }
 
   .header-actions {
@@ -191,17 +191,62 @@ body,
   }
 
   .app-header h1 {
-    font-size: 1.25rem;
+    font-size: 1.15rem;
   }
 
-  .header-actions {
-    gap: 8px;
+  .user-identity {
+    gap: 6px;
   }
 
-  .user-name {
-    display: none;
+  /* Optimized global modal for very small screens */
+  .premium-modal-overlay {
+    align-items: flex-end !important;
+    padding: 0 12px 0 !important;
+    /* Slightly more side padding */
+  }
+
+  .detail-stage,
+  .premium-modal-card,
+  .checkin-glass-card,
+  .insight-modal {
+    max-height: 96vh !important;
+    max-height: 96dvh !important;
+    border-radius: 32px 32px 0 0 !important;
+    padding: 2.5rem 1.25rem max(1.25rem, env(safe-area-inset-bottom)) !important;
+    width: 100% !important;
+    max-width: 450px !important;
+    transform: none !important;
+    margin-bottom: 0 !important;
+  }
+
+  .detail-content-scroll,
+  .checkin-content-scroll,
+  .revealed-details {
+    max-height: calc(96dvh - 200px) !important;
+  }
+
+  .modal-header,
+  .checkin-header-v2 {
+    margin-bottom: 15px;
+  }
+
+  .markdown-content {
+    font-size: 0.95rem;
+  }
+
+  .btn-premium-submit,
+  .btn-pill-primary,
+  .btn-close-modal {
+    height: 50px !important;
+    font-size: 0.95rem !important;
+  }
+
+  .insight-modal {
+    max-height: 90vh !important;
+    max-height: 90dvh !important;
   }
 }
+
 
 /* Skeleton & Shimmer Animations */
 @keyframes shimmer {

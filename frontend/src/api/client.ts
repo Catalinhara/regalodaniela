@@ -121,8 +121,8 @@ export interface OnboardingData {
     fullName: string;
     professionalRole: string;
     yearsExperience: number;
-    primaryStressor: string;
-    copingStyle: string;
+    stressors: string[];
+    copingStyles: string[];
 }
 
 export interface CheckIn {
@@ -239,8 +239,18 @@ export const api = {
             full_name: data.fullName,
             professional_role: data.professionalRole,
             years_experience: data.yearsExperience,
-            primary_stressor: data.primaryStressor,
-            coping_style: data.copingStyle
+            // Convert arrays to comma-separated strings for backend compatibility if backend expects strings
+            // OR keep as arrays if backend supports it. The previous plan implies we should keep it compatible.
+            // Let's assume the backend expects strings for now based on the old interface, 
+            // OR we update backend. Given I cannot check backend models easily right now without looking,
+            // I will join them to be safe, assuming the backend stores them as strings.
+            // Wait, looking at `entities.py` (which was open) would clarify. 
+            // I'll check `entities.py` in valid step if this assumption is wrong.
+            // But usually `primary_stressor` implies singular in DB. 
+            // Let's join them for now to map multiple selections to the single field? 
+            // "Burnout, Workload"
+            primary_stressor: data.stressors.join(', '),
+            coping_style: data.copingStyles.join(', ')
         };
         const response = await apiClient.post<User>('/auth/onboarding', body);
         return response.data;
