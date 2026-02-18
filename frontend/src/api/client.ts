@@ -1,6 +1,9 @@
 import axios, { AxiosInstance } from 'axios';
 
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000';
+const API_URL = import.meta.env.VITE_API_URL ||
+    (typeof window !== 'undefined' && window.location.hostname !== 'localhost'
+        ? `http://${window.location.hostname}:8000`
+        : 'http://localhost:8000');
 
 // Create axios instance
 const apiClient: AxiosInstance = axios.create({

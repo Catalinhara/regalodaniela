@@ -28,6 +28,7 @@ class Settings(BaseSettings):
         "http://localhost:3000", 
         "http://127.0.0.1:5173", 
         "http://127.0.0.1:3000",
+        "http://16.170.214.67:5173", # AWS EC2 Demo
         "http://192.168.1.195:5173"
     ]
     
