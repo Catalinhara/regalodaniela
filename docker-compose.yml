@@ -29,7 +29,7 @@ services:
       - ./frontend:/app
       - /app/node_modules
     environment:
-      - VITE_API_URL=http://192.168.1.195:8000
+      # - VITE_API_URL=http://192.168.1.195:8000
       - VITE_GOOGLE_CLIENT_ID=${VITE_GOOGLE_CLIENT_ID}
     depends_on:
       - backend
